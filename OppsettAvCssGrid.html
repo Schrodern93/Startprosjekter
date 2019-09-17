@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		div.page {
+			height: 100vh;
+			display: grid;
+			/*kan også bruke px(pixler) istede for fr(fractions)*/
+			grid-template-columns: 1fr 3fr;
+			grid-template-rows: 1fr 10fr 1fr ;
+			/*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+			grid-template-areas:'header header'
+								'meny innhold'
+								'meny footer';
+		
+		}
+		div.footer { 
+			background-color:red;
+			grid-area: footer;
+		}
+		div.header {
+			background-color:blue;
+			grid-area: header;
+		}
+		div.innhold {
+			background-color:green;
+			grid-area: innhold;
+		}
+		div.meny {
+			background-color:yellow;
+			grid-area: meny;
+		}
+
+		@media only screen and (max-width: 600px) {
+
+			div.page {
+				grid-template-columns: 1fr;
+				grid-template-rows: 20px 1fr 4fr 20px;
+				grid-template-areas: 'header ' 'meny' 'innhold' 'footer';
+			}
+		
+		}
+
+	</style>
+
+
+</head>
+<body>
+	<div class="page">
+		<div class="header">Header</div>
+		<div class="meny">Meny</div>
+		<div class="innhold">Innholdstekst</div>
+		<div class="footer ">Footer</div>
+	</div>
+</body>
+</html>
