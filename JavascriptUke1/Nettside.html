@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div.page {
+            height: 100vh;
+            display: grid;
+            /*kan også bruke px(pixler) istede for fr(fractions)*/
+            grid-template-columns: 1fr 5fr 2fr;
+            grid-template-rows: 1fr 10fr 1fr 1fr;
+            /*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+            grid-template-areas:'header header header' 
+                                'meny  innhold innhold' 
+                                'meny  innhold innhold ' 
+                                'footer footer footer';
+        }
+
+        div.header {
+            background-color: red;
+            grid-area: header;
+
+
+
+        }
+
+        div.meny {
+            background-color: green;
+            grid-area: meny;
+
+
+        }
+
+        div.innhold {
+            background-color: blue;
+            grid-area: innhold;
+
+        }
+        /*
+        div.mid{
+            float:right;            floaten flytter boksen til høyre
+           padding-top: 50%;
+           padding-bottom: 0%;
+           padding-right: 0%;
+           padding-left: 50%;
+            background-color: aquamarine;
+            
+            
+        }*/
+        div.footer {
+            background-color: darkslategrey;
+            grid-area: footer;
+        }
+
+        bokser {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        li {
+            float: left;
+        }
+
+        li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="page">
+        <bokser class="header">
+        Header
+            <bokser>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </bokser>
+        
+        
+        </div>
+
+
+        <div class="meny">Meny</div>
+        <div class="innhold">
+            Innhold
+            <div class="mid" ></div>
+        </div>
+        <div class="footer">Footer</div>
+        
+   </div>
+
+</body>
+</html>
