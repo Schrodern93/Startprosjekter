@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h1>Hvilken by er hovedstaden til Norge?</h1>
+
+    <p id="Riktig" onclick="Riktig()">Oslo</p>
+    <p id="Feil1" onclick="Feil1()">Bergen</p>
+    <p id="Feil2" onclick="Feil2()">Larvik</p>
+
+    <script>
+
+        function Riktig() {
+            document.getElementById('Riktig').innerHTML = 'Riktig!';
+        }
+        function Feil1() {
+
+            document.getElementById('Feil1').innerHTML = 'Feil';
+       
+        }
+        function Feil2() {
+
+            document.getElementById('Feil2').innerHTML = 'Feil';
+       
+        }
+
+    </script>
+
+
+</body>
+</html>
