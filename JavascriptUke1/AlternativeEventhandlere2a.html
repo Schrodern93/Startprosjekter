@@ -9,7 +9,7 @@
     <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
     <input type="text" onchange="testOnChange()" oninput="testOnInput()" onkeypress="testOnOnekey()">
     <h3 onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()">Test test test</h3>
-    
+    <!--ctrl k + c for komment-->
     <h2 id="info"></h2>
     <h1 ondblclick="testondblclick()">Trykk x 2</h1>
     <h1 oncontextmenu="testoncontextmenu()"contextmenu="mymenu">Høyreklikk</h1>
@@ -17,31 +17,34 @@
 
     <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">Mer informasjon her</a>
     <script>
+
+        //Alle verdiene som blri returnert i funksjonene blir sent til console istede for å vise på skjermen
+
         function testOnLoad() {
             console.log( document.getElementById('info').innerHTML += '<li>onload</li>');
-            document.getElementById('info').innerHTML += '<li>onload</li>';
+            
         }
         function testOnChange() {
-            document.getElementById('info').innerHTML += '<li>onchange</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>onchange</li>');
         }
         function testOnInput() {
-            document.getElementById('info').innerHTML += '<li>oninput</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>oninput</li>');
         }
         function testOnMouseOver() {
-            document.getElementById('info').innerHTML += '<li>onmouseover</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>onmouseover</li>');
         }
         function testOnMouseOut() {
-            document.getElementById('info').innerHTML += '<li>onmouseout</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>onmouseout</li>');
         }
         function testOnOnekey() {
-            document.getElementById('info').innerHTML += '<li>onkeypress</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>onkeypress</li>');
         }
 
         function testondblclick() {
            console.log( document.getElementById('info').innerHTML += '<li>ondblclick</li>');
         }
         function testoncontextmenu() {
-            document.getElementById('info').innerHTML += '<li>oncontextmenu</li>';
+            console.log(document.getElementById('info').innerHTML += '<li>oncontextmenu</li>');
         }
     </script>
 </body>
