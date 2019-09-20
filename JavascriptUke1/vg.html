@@ -26,14 +26,15 @@
             color:black;
             text-align:center;
         }
-        over1 {
-            padding:200px;
+        td{
+            min-width: 50px; /*setter minimustørrelse på rutene tallene er i*/ 
         }
+
     </style>
 </head>
 <body>
 
-    <table id="b" cellspacing="20" >
+    <table id="b" cellpadding="5" >
         <tr>
             <td onmouseover="over1(this)">1</td><td onmouseover="over1(this)">2</td><td onmouseover="over1(this)">3</td>
         </tr>
@@ -64,6 +65,7 @@
         function over1(over1) {
             over1.innerHTML = 'X'
         }
+      
         //Viktig å ikke kalle funksjonen det samme som eventen, derfor er det en ekstra x på funksjonen, location.href sender personen videre til ny side
         //Viktig å bruke full nettadresse (https://url)
         function ondblclickx(test) {
