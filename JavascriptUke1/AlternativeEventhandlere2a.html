@@ -18,6 +18,7 @@
     <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">Mer informasjon her</a>
     <script>
         function testOnLoad() {
+            console.log( document.getElementById('info').innerHTML += '<li>onload</li>');
             document.getElementById('info').innerHTML += '<li>onload</li>';
         }
         function testOnChange() {
@@ -37,7 +38,7 @@
         }
 
         function testondblclick() {
-            document.getElementById('info').innerHTML += '<li>ondblclick</li>';
+           console.log( document.getElementById('info').innerHTML += '<li>ondblclick</li>');
         }
         function testoncontextmenu() {
             document.getElementById('info').innerHTML += '<li>oncontextmenu</li>';
