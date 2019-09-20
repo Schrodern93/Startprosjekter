@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #link {
+            font-size: 50px;
+            color:darkblue;
+            text-decoration:underline;
+            text-decoration-color:darkblue;
+        }
+
+        #b{
+            font-size:50px;
+        }
+        table {
+            border:solid;
+            border-color:red;
+            width: 200px;
+            height: 200px;
+        }
+        th{
+            padding:10px;
+            text-align:center;
+            
+        }
+        over1{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+
+    <table id="b" >
+        <tr>
+            <td onmouseover="over1(this)">1</td><td onmouseover="over1(this)">2</td><td onmouseover="over1(this)">3</td>
+        </tr>
+        <tr>
+            <td onmouseover="over1(this)">4</td><td onmouseover="over1(this)">5</td><td onmouseover="over1(this)">6</td>
+        </tr>
+        <tr>
+            <td onmouseover="over1(this)">7</td><td onmouseover="over1(this)">8</td><td onmouseover="over1(this)">9</td>
+        </tr>
+    </table>
+
+
+
+    <p>Ferdighet 3 - spesialtilfelle, this og gjøre noe med det elementet man trykker på (eller som utløser eventet)</p>
+    Samenlign dette eksempelet med "Ferdighet 2 - Onclick - kjøre funksjon som endrer innerHTML ut fra Id"!
+    <h2 id="z" onclick="doSomething(this)">AAAAAAAAAAAAAAAA</h2>
+    <h2 id="y" onclick="doSomething(this)">BBBBBBBBBBBBBBBB</h2>
+   
+
+
+
+    <!--< !--tester her ut vanlig hyperlink vs ondblclick, dvs at den ene vil sende deg til siden ved ett trykk, mens den andre trenger 2-- >-->
+    <h1><a href="https://www.vg.no">VG</a></h1>
+    <br />
+    <div id="link" ondblclick="ondblclickx(this)">VGdbl</div>
+
+    <script>
+        function over1(over1) {
+            over1.innerHTML = 'X'
+        }
+        //Viktig å ikke kalle funksjonen det samme som eventen, derfor er det en ekstra x på funksjonen, location.href sender personen videre til ny side
+        //Viktig å bruke full nettadresse (https://url)
+        function ondblclickx(test) {
+
+            test = (location.href = "http://www.vg.no");
+        }
+
+        function doSomething(etNavnDuVelgerSelv) {
+            // Nå er etNavnDuVelgerSelv det samme som om vi hadde kjørt:
+            // var etNavnDuVelgerSelv = document.getElementById('z');
+            // eller
+            // var etNavnDuVelgerSelv = document.getElementById('y');
+            // HVIS og bare hvis du trykker på akkurat det elementet som har id=z
+            etNavnDuVelgerSelv.innerHTML = 'CCCCCCCCCCCCCCCC';
+        }
+
+    </script>
+
+</body>
+</html>
