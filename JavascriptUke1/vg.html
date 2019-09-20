@@ -24,14 +24,14 @@
         <!--< !--tester her ut vanlig hyperlink vs ondblclick, dvs at den ene vil sende deg til siden ved ett trykk, mens den andre trenger 2-- >-->
             <h1><a href="https://www.vg.no">VG</a></h1>
             <br />
-            <div id="link" ondblclick="ondblclickx()">VGdbl</div>
+            <div id="link" ondblclick="ondblclickx(this)">VGdbl</div>
 
             <script>
                 //Viktig å ikke kalle funksjonen det samme som eventen, derfor er det en ekstra x på funksjonen, location.href sender personen videre til ny side
                 //Viktig å bruke full nettadresse (https://url)
-                function ondblclickx() {
-                    document.getElementById('link').innerHTML = "www.vg.no";
-                location.href = "http://www.vg.no";
+                function ondblclickx(test) {
+                    
+              test = (location.href = "http://www.vg.no");
                 }
 
                  function doSomething(etNavnDuVelgerSelv) {
