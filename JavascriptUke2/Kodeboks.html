@@ -103,9 +103,8 @@
 
     </div>
     <div class="bekreft" onclick="refresh()">Bekreft</div>
-    <p onclick="trykkPåTall(this)">
+    <p id="typed">test</p>
 
-    </p>
     <script>
         alert("Velkommen til kodeboksen.\nDen har 4 tall, trykk bekreft når du har tastet fire tall")
         var tastet = "";
@@ -113,6 +112,7 @@
         function trykkPåTall(par1) {
             tastet += par1.innerHTML;
             console.log(tastet);
+            document.getElementById("typed").innerHTML = tastet;           
 
         }
         function refresh() {
@@ -122,7 +122,7 @@
                 location.href = "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fofx%2Ffiles%2F2018%2F09%2FOFX3-iStock-492595743-1200x800.jpg";
             } else {
                 alert("Feil");
-                tastet = ""; 
+                document.getElementById("typed").innerHTML = "";
             }
 
         }
