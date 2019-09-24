@@ -28,7 +28,8 @@
         div.meny {
             background-color: lightgrey;
             grid-area: meny;
-            margin:0;
+            margin: 0;
+            float: left;
         }
 
         div.innhold {
@@ -40,21 +41,45 @@
             background-color: black;
             grid-area: footer;
         }
+
+        div.container {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: red;
+        }
+
+        button {
+            width: 300px;
+            background-color: red;
+            fill: red;
+        }
+        /*ul.dropdown-menu{
+            color: red;
+        }
+        li.dropdown-menu{
+            color: red;
+        }*/
+        .dropdown.btn {
+           fill:red;
+            background-color: red;
+        }
+        
     </style>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    
+
 
 </head>
 <body>
     <div class="side">
         <div class="header">_____</div>
         <div class="meny">
-            <div class="container">
+            <div class="container" >
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >
                         Dropdown Example
                         <span class="caret"></span>
                     </button>
@@ -68,12 +93,12 @@
                         <li><a href="#">Test3</a></li>
                     </ul>
                 </div>
-                </div>
             </div>
-            <div class="innhold">____</div>
-            <div class="footer">_____</div>
         </div>
+        <div class="innhold"> <button type="button" color="red">test</button></div>
+        <div class="footer">_____</div>
+    </div>
 
-
+   
 </body>
 </html>
