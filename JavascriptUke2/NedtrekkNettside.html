@@ -9,15 +9,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-        button{
-            width:80px; 
-            height:50px;
+        button {
+            width: 80px;
+            height: 50px;
         }
-        li{
-            border:ridge;
-            border-color:darkred;
-           
-        }
+
+        /*li {
+            border: ridge;
+            border-color: darkred;
+        }*/
+       
     </style>
 
 </head>
@@ -31,12 +32,13 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#" style="background-color:black">Home</a></li>
                     <li><a href="#">Page 1</a></li>
+                    <li class="divider" style="color: powderblue"></li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                     <li class="nav-item dropdown">
                         <!--<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            Dropdown link
-                            </a>-->
+            Dropdown link
+            </a>-->
                         <div class="btn-group">
                             <button type="button" style="background-color:pink" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
@@ -44,16 +46,17 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <br>
+
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <br>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                           </div>
+                        </div>
                     </li>
                 </ul>
-        </div>
             </div>
-</nav>
+        </div>
+    </nav>
 
 </body>
 </html>
