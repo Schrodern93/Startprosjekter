@@ -9,6 +9,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
+        body {
+			padding: 0;
+			margin: 0;
+		}
+        div.page {
+            height: 100vh;
+            display: grid;
+            /*kan også bruke px(pixler) istede for fr(fractions)*/
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 50px 10fr 1fr;
+            /*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+            grid-template-areas: 'header header' 
+                                  'meny meny' 
+                                 'innhold innhold' 
+                                  'footer footer';
+        }
+        div.header{
+            grid-area: header;
+        }
+
+        div.meny{
+            grid-area: meny;
+        }
+
+        div.innhold{
+            grid-area: innhold;
+            background-color: slategray;
+        }
+
+        div.footer{
+            grid-area: footer;
+            background-color: #282828; 
+        }
+
         button {
             width: 80px;
             height: 50px;
@@ -23,40 +57,93 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default" style="background-color: maroon">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" style="background-color:maroon" href="#">WebSiteName</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#" style="background-color:black">Home</a></li>
-                    <li><a href="#">Page 1</a></li>
-                    <li class="divider" style="color: powderblue"></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                    <li class="nav-item dropdown">
-                        <!--<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-            Dropdown link
-            </a>-->
-                        <div class="btn-group">
-                            <button type="button" style="background-color:pink" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <br>
+    <div class="page">
+        <div class="meny">
+            <nav class="navbar navbar-default" style="background-color: maroon">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" style="background-color:maroon" href="#">WebSiteName</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#" style="background-color:black">Home</a></li>
+                            <li class="nav-item dropdown">
+                                <div class="btn-group">
+                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Test1
+                                    </button>
 
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <br>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li class="divider"></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <div class="btn-group">
+                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Test2
+                                    </button>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li class="divider"></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <div class="btn-group">
+                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Test3
+                                    </button>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li class="divider"></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <!--<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                        Dropdown link
+                        </a>-->
+                                <div class="btn-group">
+                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Action
+                                    </button>
+
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul>
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li class="divider"></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
+        <div class="innhold">
+
+        </div>    
+    </div>
 
 </body>
 </html>
