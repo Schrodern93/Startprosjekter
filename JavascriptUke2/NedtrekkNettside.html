@@ -18,7 +18,7 @@
             display: grid;
             /*kan også bruke px(pixler) istede for fr(fractions)*/
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 50px 10fr 1fr;
+            grid-template-rows: 1fr 49px 10fr 1fr;
             /*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
             grid-template-areas: 'header header' 
                                   'meny meny' 
@@ -27,15 +27,17 @@
         }
         div.header{
             grid-area: header;
+            background-color: #312d2d;
         }
 
         div.meny{
             grid-area: meny;
+           
         }
 
         div.innhold{
             grid-area: innhold;
-            background-color: slategray;
+            background-color: #312d2d;
         }
 
         div.footer{
@@ -58,6 +60,7 @@
 </head>
 <body>
     <div class="page">
+        <div class="header"></div>
         <div class="meny">
             <nav class="navbar navbar-default" style="background-color: maroon">
                 <div class="container-fluid">
@@ -118,8 +121,8 @@
 
                             <li class="nav-item dropdown">
                                 <!--<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                        Dropdown link
-                        </a>-->
+                            Dropdown link
+                            </a>-->
                                 <div class="btn-group">
                                     <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Action
@@ -140,9 +143,9 @@
                 </div>
             </nav>
         </div>
-        <div class="innhold">
+        <div class="innhold"></div>
+        <div class="footer"></div>
 
-        </div>    
     </div>
 
 </body>
