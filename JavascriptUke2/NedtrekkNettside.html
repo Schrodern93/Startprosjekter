@@ -55,15 +55,70 @@
             border: ridge;
             border-color: darkred;
         }*/
+        #solH {
+            background-color: white;
+        }
+        #solM{
+           background-color:white;
+       }
+       #solI{
+           background-color:white;
+       }
+       #solF{
+           background-color:lightgray;
+       }
+
+       #måneH{
+           background-color:#282828;
+           color:black;
+       }
+       #måneM{
+           background-color:#312d2d;
+       }
+      
+       #måneI{
+           background-color:#312d2d;
+           color:white;
+       }
+      
+       #måneF{
+           background-color:#282828;
+       }
+      
+       #liten{
+           width: 80px;
+           height: 50%;
+       }
+       #tekst{
+           color:white;
+       }
+       #tekst2{
+           color:black;
+       }
+       /*h5{
+           color:orange;
+       }*/
        
+
     </style>
 
 </head>
 <body>
+
     <div class="page">
-        <div class="header"></div>
-        <div class="meny">
-            <nav class="navbar navbar-default" style="background-color: maroon">
+        <div id="solH" class="header">
+            
+               
+                    <button id="liten" type="button" onclick="farge()">
+                        DAG
+                    </button>
+             <br />
+                    <button id="liten" type="button" onclick="natt()">
+                        NATT
+                    </button>
+        </div>
+        <div id="solM" class="meny">
+            <nav class="navbar navbar-default" style="background-color: maroon" >
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" style="background-color:maroon">WebSiteName</a>
@@ -73,8 +128,8 @@
                             <li class="active"><a href="https://schrodern93.github.io/Startprosjekter/JavascriptUke2/NedtrekkNettside" style="background-color:black">Home</a></li>
                             <li class="nav-item dropdown">
                                 <div class="btn-group">
-                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                        UKE1
+                                    <button id="tekst" name="lys" type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <h5>UKE1</h5>
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -88,14 +143,14 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <div class="btn-group">
-                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                        UKE2
+                                    <button id="tekst"  name="lys" type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <h5>UKE2</h5>
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <ul>
                                             <li><a class="dropdown-item" href="https://schrodern93.github.io/Startprosjekter/JavascriptUke2/Kodeboks">KODEBOKS</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>                    
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
                                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                                         </ul>
                                     </div>
@@ -103,8 +158,8 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <div class="btn-group">
-                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        UKE3
+                                    <button id="tekst2"  name="lys" type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <h5>UKE3</h5>
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -119,11 +174,11 @@
 
                             <li class="nav-item dropdown">
                                 <!--<a class="nav-link  dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                            Dropdown link
-                            </a>-->
+                                Dropdown link
+                                </a>-->
                                 <div class="btn-group">
-                                    <button type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        UKE4
+                                    <button id="tekst"  name="lys" type="button" style="background-color:darkred" class="btn btn-danger dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <h5>UKE4</h5>
                                     </button>
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -140,10 +195,53 @@
                 </div>
             </nav>
         </div>
-        <div class="innhold"></div>
-        <div class="footer"></div>
+        <div id="solI" class="innhold">
+            <p>Tester om teksten endrer farge</p>
+
+
+        </div>
+        <div id="solF" class="footer"></div>
 
     </div>
+
+    <script>
+    
+        var divH = document.getElementById("solH");
+        var divM = document.getElementById("solM");
+        var divI = document.getElementById("solI");
+        var divF = document.getElementById("solF");
+        var divT = document.getElementById("h5");
+
+       
+
+        function farge() {              /*her må du fikse opp i koden for at det skal fungere*/
+            var buttons = document.getElementByName("lys");
+            for (var el of buttons) {
+                if { el.color = black }
+
+                else {
+
+                }
+            }
+                divH.setAttribute("id", "solH");
+                divF.setAttribute("id", "solM");
+                divI.setAttribute("id", "solI");
+                divF.setAttribute("id", "solF");
+             
+                
+            }
+            function natt() {
+                divH.setAttribute("id", "måneH");
+                divH.setAttribute("id", "måneM");
+                divI.setAttribute("id", "måneI");
+                divF.setAttribute("id", "måneF");
+         
+                
+
+            }
+
+    </script>
+
 
 </body>
 </html>
