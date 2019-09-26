@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script>
+
+        var i = 0;  // start point
+        var images = [];
+        var time = 3000;  // hvor lenge ett bilde skal vises
+
+
+        images[0] = 'bilde1.jpg';
+        images[1] = 'bilde2.jpg';
+        
+
+
+
+
+        //bytter bilde
+        function changeImg() {
+
+            document.slide.src = images[i];
+
+
+            if (i < images.length - 1){
+                i++;
+            }
+            else {
+                i = 0;
+            }
+            setTimeout("changeImg()", time);
+        }
+
+        window.onload = changeImg;
+
+    </script>
+
+</head>
+<body>
+    <img name="slide" width="400" height="200" />
+</body>
+</html>
