@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script type="text/javascript">
+        function highlight(currentdiv) {
+            var divs = document.getElementsByTagName("div");
+            for (var i = 0; i < divs.length; i++) {
+                if (divs[i].className == "mybox") {
+                    if (divs[i].id == currentdiv) {
+                        divs[i].style.backgroundColor = "#ffc";         /* Endrer farge på den trykte knappen, hvis fargen i style .mybox er lik, hvis ikke endrer den alle andre*/
+                    }
+                    else {
+                        divs[i].style.backgroundColor = "#CCC";            /* beholder fargen på de andre divene hvis fargen er satt til samme som style fargen */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        .mybox {
+            display: block;
+            background: #ffc;
+            padding: 5px;
+            border: 1px solid red;
+            width: 100px;
+            height: 35px;
+            cursor: pointer;                /*setter musa til en hånd med pekefinger*/
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="P1" class="mybox" onClick="highlight('P1')">1</div>
+    <div id="P2" class="mybox" onClick="highlight('P2')">2</div>
+    <div id="P3" class="mybox" onClick="highlight('P3')">3</div>
+    <div id="P4" class="mybox" onClick="highlight('P4')">4</div>
+    <div id="P5" class="mybox" onClick="highlight('P5')">5</div>
+    <div id="P6" class="mybox" onClick="highlight('P6')">6</div>
+
+
+</body>
+</html> 
