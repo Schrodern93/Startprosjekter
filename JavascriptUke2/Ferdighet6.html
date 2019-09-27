@@ -5,27 +5,80 @@
     <meta charset="utf-8" />
     <title></title>
 </head>
+<style>
+    div.page{
+             height: 100vh;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr ;
+			grid-template-areas:'knapper resultat'						
+    }
+
+    div.knapper{
+        grid-area:knapper;
+    }
+    div.resultat{
+        grid-area:resultat;
+    }
+
+
+</style>
 
 
 <body>
-    <p>Ferdighet 6 - Sette sammen tekst av flere deler  og  bruke dette til å bygge HTML dynamisk</p>
+    <div class="page">
+        <div class="knapper" id="knapper">
+            <p>Ferdighet 6 - Sette sammen tekst av flere deler  og  bruke dette til å bygge HTML dynamisk</p>
+            <br />
 
-    <input id="sizeSlider" type="range" min="100" max="500" step="10" oninput="showDiv()" />
-    <br /><input id="textInput" type="text" oninput="showDiv()" value="endre teksten!" />
-    <select id="colorChooser" onchange="showDiv()">
-        <option value="red">Red color</option>
-        <option selected value="green">Green color</option>
-        <option value="blue">Blue color</option>
-    </select>
-   
-        <select id="borderChooser" onchange="showDiv()">
-            <option value="black">Black border</option>
-            <option value="Grey">Grey border</option>
-            <!--border hidden?-->
-        </select>
-   
-    <div id="resultat"></div>
-    <div id="resultatHtml" style="font-family: monospace"></div>
+            <p>Størrelse slider for bakgrunnen </p>
+            <input id="sizeSlider" type="range" min="100" max="500" step="10" oninput="showDiv()" />
+            <br />
+            <p>Tekst input, skriv inn tekst her :D</p>
+            <input id="textInput" type="text" oninput="showDiv()" value="endre teksten!" />
+            <br />
+            <p>Denne slideren velger tykkelse på rammen</p>
+            <input id="borderTykkelse" type="range" min="0" max="100" step="1" oninput="showDiv()" />
+            <br />
+            <p>Denne slideren velger hvor avrundet rammen skal være</p>
+            <input id="avrundSlider" type="range" min="0" max="100" step="1" oninput="showDiv()" />
+            <br />
+
+            <p> Fargevelger for bakgrunnen</p>
+            <select id="colorChooser" onchange="showDiv()">
+                <option value="red">Red color</option>
+                <option selected value="green">Green color</option>
+                <option value="white">White color</option>
+                <option value="blue">Blue color</option>
+                <option value="orange">Orange color</option>
+                <option value="purple">Purple color</option>
+                <option value="brown">Brown color</option>
+            </select>
+
+            <p>Fargevelger for rammen</p>
+            <select id="borderChooser" onchange="showDiv()">
+                <option value="black">Black border</option>
+                <option value="Grey">Grey border</option>
+                <option value="red">Red border</option>
+                <option value="orange">Orange border</option>
+                <option value="pink">Pink border</option>
+            </select>
+            <p>Typevelger for ramme (enkelte rammer vil ikke vises optimalt med fargen svart)</p>
+            <select id="borderType" onchange="showDiv()">
+                <option value="solid">Solid</option>
+                <option value="dotted">Dotted</option>
+                <option value="groove">Groove</option>
+                <option value="ridge">Ridge</option>
+                <option value="double">Double</option>
+                <option value="none">Ingen</option>
+            </select>
+            <br/>
+            <div id="resultatHtml" style="font-family: monospace"></div>
+        </div>
+        <div class="resultat" id="resultat"></div>
+        <br/>
+       
+    </div>
     <script>
 
         var resultatDiv = document.getElementById('resultat');
@@ -34,28 +87,26 @@
         var textInput = document.getElementById('textInput');
         var colorChooser = document.getElementById('colorChooser');
         var borderChooser = document.getElementById('borderChooser');
-        var ramme = solid;
+        var borderType = document.getElementById('borderType');
+        var avrundSlider = document.getElementById('avrundSlider');
+        var borderTykkelse = document.getElementById('borderTykkelse');
         showDiv();
-        //ramme();
+
         function showDiv() {
             resultatDiv.innerHTML = '<div style="'
                 + 'background-color: ' + colorChooser.value + ';'
-                + 'border: ' + ramme + ';'
+                + 'border: ' + borderType.value + ';'
                 + 'border-color:' + borderChooser.value + ';'
+                + 'border-width:' + borderTykkelse.value + 'px;'
+                + 'border-radius: ' + avrundSlider.value + 'px;'
                 + 'width: ' + sizeSlider.value + 'px;'
                 + 'height: ' + sizeSlider.value + 'px;'
+                + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + sizeSlider.value + 'px;'
                 + '">' +
                 textInput.value + '</div>';
             resultatHtmlDiv.innerText = resultatDiv.innerHTML;
         }
-            //function ramme() {
-            //    resultatDiv.innerHTML = '<div style="'
-            //        + 'border-color: ' + borderChooser.value + ';'
-            //        + 'width: ' + sizeSlider.value + 'px;'
-            //        + 'height: ' + sizeSlider.value + 'px;'
-            //        + '">' +
-            //        textInput.value + '</div>';
-            //}
+
     </script>
 </body>
 </html>
