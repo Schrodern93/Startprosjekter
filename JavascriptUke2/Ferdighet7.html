@@ -9,11 +9,11 @@
     <p>Ferdighet 7 - Sette variabel til resultat av et regnestykke. </p>
     <input id="tallA" type="range" min="1" max="1000" step="1" oninput="calculate()" value="2" />
     <input id="tallB" type="range" min="1" max="1000" step="1" oninput="calculate()" value="2" />
-    <!--<input id="firkant" type="range"-->
     <div id="textInput" type="text" onload="firkant()" value="test" />
     <br />
     <div id="resultatHtml" style="font-family: monospace"></div>
     <br />
+    <div id="omkrets" style="font-family: monospace"></div>
     <div id="resultat"></div>
     <div id="firkant"></div>
 
@@ -22,8 +22,9 @@
         var tallAInput = document.getElementById('tallA');
         var tallBInput = document.getElementById('tallB');
         var firkant = document.getElementById('firkant');
-        var tekst = document.getElementById('tallA');
+        var tekst = document.getElementById('produkt');
         var resultatHtmlDiv = document.getElementById('resultatHtml');
+        var omkrets = document.getElementById('omkrets');
         calculate();
         function calculate() {
             var tallA = parseInt(tallAInput.value);
@@ -33,11 +34,13 @@
             var produkt = tallA * tallB;
             var kvotient = tallA / tallB;
             var tekst = tallA;
+            var omkrets = (tallA * 2) + (tallB * 2);
             resultatDiv.innerHTML = '' +
                 tallA + '+' + tallB + '=' + sum + '<br/>' +
                 tallA + '-' + tallB + '=' + differense + '<br/>' +
                 tallA + '*' + tallB + '=' + produkt + '<br/>' +
                 tallA + '/' + tallB + '=' + kvotient;
+            tallA + '*' + 2 + tallB + '*' + 2 + '=' + omkrets;
             firkant.innerHTML = '' + tallA + '=' + tekst +
 
                 '<div style="'
@@ -46,10 +49,8 @@
                 + 'height: ' + tallB + 'px;'
                 + 'text-align:left;' + 'vertical-align: top;' + 'px;'
                 + '">' +
-                tekst.value + '</div>';
+                produkt + 'Areal' + '<br/>' +  omkrets + 'Omkrets' + '</div>';
             resultatHtmlDiv.innerText = firkant.innerHTML;
-
-
         }
     </script>
 </body>
