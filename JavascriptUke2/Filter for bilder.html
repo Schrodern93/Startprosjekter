@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+
+<body>
+    <img src="./bilder/bilde1.jpg" height="500">
+    <br />
+    <label>Blur</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="blur" data-scale="px">
+    <br />
+    <label>Lysstyrke</label>
+    <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilter()" data-filter="brigthness" data-scale="%">
+    <br />
+    <label>Kontrast</label>
+    <input type="range" min="0" max="200" value="100" step="1" onchange="applyFilter()" data-filter="contrast" data-scale="%">
+    <br />
+    <label>Svart/hvit</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="grayscale" data-scale="%">
+    <br />
+    <label>Hue rotasjon</label>
+    <input type="range" min="0" max="360" value="0" step="1" onchange="applyFilter()" data-filter="hue-rotate" data-scale="deg">
+    <br />
+    <label>Inverter</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="invert" data-scale="%">
+    <br />
+    <label>Opacity</label>
+    <input type="range" min="0" max="100" value="100" step="1" onchange="applyFilter()" data-filter="opacity" data-scale="%">
+    <br />
+    <label>Saturate</label>
+    <input type="range" min="1" max="100" value="1" step="1" onchange="applyFilter()" data-filter="saturate" data-scale="">
+    <br />
+    <label>Sepia</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="sepia" data-scale="%">
+
+    <script type="text/javascript">
+        var image = document.querySelector('img');
+        var filterControls = document.querySelectorAll('input[type=range]');
+        function applyFilter() {
+            var computedFilters = '';
+            filterControls.forEach(function (item, index) {
+                computedFilters += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ') ';
+            });
+            image.style.filter = computedFilters;
+        };
+    </script>
+</body>
+</html>
