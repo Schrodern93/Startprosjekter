@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+
+        firkant{
+            background-color: red;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div id="firkant" onload="calculate()"></div>
+    
+   
+    <script>
+        var firkant = document.getElementById('firkant');
+        var høyde = document.getElementById('høyde');
+        var bredde = document.getElementById('bredde');
+        var ramme = document.getElementById('ramme');
+        calculate();
+
+        function calculate() {
+            var høyde = 100 + Math.floor(Math.random() * 10);
+            var bredde = 100 + Math.floor(Math.random() * 10);
+            var ramme = Math.floor(Math.random() * 10);
+
+            firkant.innerHTML = '<div style="'
+                + 'background-color:red;'
+                + 'width: ' + bredde.value + 'px;'
+                + 'height: ' + høyde.value + 'px;'
+                + 'border: solid;' + 'border-width:' + ramme.value + 'px;'
+                + '</div>';
+            }
+    </script>
+
+
+
+</body>
+</html>

@@ -4,27 +4,28 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-</head>
-   <style>
-    div.page{
-             height: 100vh;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: 1fr ;
-			grid-template-areas:'knapper resultat'						
-    }
 
-    div.knapper{
-        grid-area:knapper;
-    }
-    div.resultat{
-        grid-area:resultat;
-    }
+    <style>
+        /*setter opp div page som definerer hvordan hele siden skal settes opp i css grid*/
+        div.page {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: 'knapper resultat'
+        }
 
+        div.knapper {
+            grid-area: knapper;
+        }
 
+        div.resultat {
+            grid-area: resultat;
+        }
     </style>
 
-
+</head>
+   
 <body>
     <div class="page">
         <div class="knapper" id="knapper">
@@ -44,6 +45,9 @@
             <input id="avrundSlider" type="range" min="0" max="100" step="1" oninput="showDiv()" />
             <br />
 
+            <!--Her legges alle alternativene som fargevelgeren har, når de er plassert i en select vil de settes opp som en liste. Så velger man verdier,
+            disse vil bli puttet inn i kodens funksjon som verdier for background-color, og dermed vil de endre fargen på backgrunnen. 
+            Hvis man ønsker at koden skal starte på en spesiel farge som ikke er den første i listen kan man velge "selected value"-->
             <p> Fargevelger for bakgrunnen</p>
             <select id="colorChooser" onchange="showDiv()">
                 <option value="red">Red color</option>
@@ -81,6 +85,7 @@
     </div>
     <script>
 
+        //Her defineres startverdiene for variablene 
         var resultatDiv = document.getElementById('resultat');
         var resultatHtmlDiv = document.getElementById('resultatHtml');
         var sizeSlider = document.getElementById('sizeSlider');
@@ -92,7 +97,11 @@
         var borderTykkelse = document.getElementById('borderTykkelse');
         showDiv();
 
-        function showDiv() {
+
+        //Her er selve funksjoen som utfører oppgaven, den setter først background - color til colorChooser.value, som i vårt tilfelle er "green". 
+        //Etter dette setter den alle de andre verdiene, viktig å huske på at enkelte verdier trenger en lengdeverdi, som px.  
+        //på slutten settes resultatHTmlDiv.innerText til resultatDiv.innerHTML, dette er teksten som viser hvordan HTML koden ser ut når den har fått inputverdiene
+        function showDiv() { 
             resultatDiv.innerHTML = '<div style="'
                 + 'background-color: ' + colorChooser.value + ';'
                 + 'border: ' + borderType.value + ';'

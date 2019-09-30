@@ -2,12 +2,15 @@
 
 <html>
 <head>
-    <title></title>
+    <title>BILDEFILTER</title>
 </head>
-
+<!--I denne koden tar jeg for meg alle ferdigdefinerte filtre for bilder i Javascript--> 
 <body>
     <img src="bilde1.jpg" height="400">
     <br />
+
+    <!--input typen range vil lage en knapp man kan dra frem og tilbake for å justere inputverdi. Du velger selv ut hva som skal være maks og min verdier, og hvor mye den skal hoppe hver gang-->
+    <!--Noen av typene input defineres av forskjellige ting som % , deg(for grader) eller udefinert, som du kan se i "data-scale". Og viktig å definere riktige startverdier, som Saturate, som må starte på 1--> 
     <label>Blur</label>
     <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="blur" data-scale="px"><br>
     <label>Brightness</label>
@@ -27,6 +30,10 @@
     <label>Sepia</label>
     <input type="range" min="0" max="100" value="0" step="1" onchange="applyFilter()" data-filter="sepia" data-scale="%"><br>
 
+    <!--Koden fungerer slik at på endring på slideren vil denne funksjonen kjøre. 
+    bildet er lagret i en variabel, slik at hvis du legger til en effekt så en annen seinere vil bildet fortsatt ha effekten fra første endring
+    filterControls får inn endring fra alle inputtypene "range", som vil si alle sliderene.
+    Funksjonen endrer så computedFilter ved å finne ut hvilken endring som skal gjøres og legger til startverdien og endringer som gjøres underveis-->
     <script type="text/javascript">
         var image = document.querySelector('img');
         var filterControls = document.querySelectorAll('input[type=range]');
