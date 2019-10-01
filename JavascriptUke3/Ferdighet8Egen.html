@@ -35,8 +35,8 @@
         <div id="bla1">Knapp</div>
     </div>
 
-    <input id="chk" type="checkbox" onchange="toggleStyle()" />
-    <input id="chk1" type="checkbox" onchange="toggleStyle()" />
+    <input class="selected" id="chk" type="checkbox" onchange="toggleStyle()" />
+    <input class="selected" id="chk1" type="checkbox" onchange="toggleStyle()" />
 
 
 
@@ -44,6 +44,8 @@
     <script>
         var textInput = document.getElementById('text');
         var h2Element = document.getElementById('overskrift');
+        classList.contains();
+        console.log(classList.contains());
         function doSomethingA(clickedElement) {
             //Disse endrer fargen på bakgrunnen når knapp A er trykt, bakgrunnsfarger som endres er tekstinputboksen, overskriftsboksen og teksten i knappen
             textInput.style.backgroundColor = 'aquamarine';
@@ -70,13 +72,18 @@
             textInput.style.margin = '50px';
             textInput.style.padding = '50px;';  // ingen effekt?
             textInput.style.alignContent = 'center';
+            //--------------------------------------------------------------------------------------------//
         }
         // må gjøre endringer her for at koden skal fungere
         function toggleStyle() {
             var isChecked = document.getElementById('chk').checked;
             var isChecked1 = document.getElementById('chk1').checked;
-            document.getElementByClass('test').classList.toggle('stilig', isChecked);
-            document.getElementByClass('test').classList.toggle('stilig', isChecked1);
+
+            document.getElementById('bla').classList.toggle('stilig', isChecked);
+          document.getElementById('bla1').classList.toggle('stilig', isChecked1);
+        }
+        function classListContains(){
+              document.getElementById('checkboxId').checked = selectedDiv.classList.contains('navnPåCssKlasse');
         }
         function doSomethingB(clickedElement) {
             textInput.style.backgroundColor = 'blue';
