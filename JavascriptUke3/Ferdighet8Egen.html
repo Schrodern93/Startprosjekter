@@ -9,6 +9,17 @@
             border: 1px solid gray;
             border-radius: 5px;
         }
+        .stilig {
+            background-color: blueviolet;
+        }
+
+        div.selected::before {
+            content: "🡆";
+}
+
+        div.selected::after {
+             content: "🡄";
+}
     </style>
 </head>
 <body>
@@ -18,11 +29,23 @@
     <button onclick="doSomethingA(this)">A</button>
     <button onclick="doSomethingB(this)">B</button>
 
+     <!--må gjøre endringer her for at koden skal fungere-->
+    <div class="test">
+        <div id="bla">Bla bla bla</div>
+        <div id="bla1">Knapp</div>
+    </div>
+
+    <input id="chk" type="checkbox" onchange="toggleStyle()" />
+    <input id="chk1" type="checkbox" onchange="toggleStyle()" />
+
+
+
+
     <script>
         var textInput = document.getElementById('text');
         var h2Element = document.getElementById('overskrift');
         function doSomethingA(clickedElement) {
-             //Disse endrer fargen på bakgrunnen når knapp A er trykt, bakgrunnsfarger som endres er tekstinputboksen, overskriftsboksen og teksten i knappen
+            //Disse endrer fargen på bakgrunnen når knapp A er trykt, bakgrunnsfarger som endres er tekstinputboksen, overskriftsboksen og teksten i knappen
             textInput.style.backgroundColor = 'aquamarine';
             h2Element.style.backgroundColor = 'aquamarine';
             clickedElement.style.backgroundColor = 'aquamarine';
@@ -35,23 +58,25 @@
             textInput.style.fontWeight = 'normal';
             h2Element.style.fontWeight = 'normal';
             clickedElement.style.fontWeight = 'normal';
-           //Disse endrer boksene slik at de får avrundede kanter når knapp A er trykt, bokser som endres er tekstinputboksen, overskriftsboksen og knappen
+            //Disse endrer boksene slik at de får avrundede kanter når knapp A er trykt, bokser som endres er tekstinputboksen, overskriftsboksen og knappen
             textInput.classList.add('round');
             h2Element.classList.add('round');
             clickedElement.classList.add('round');
             //Viser teksten "Trykket på knapp A"
-            textInput.value = "Trykket på knapp A \n adsfasdfasdfsdfaas";
+            textInput.value = "Trykket på knapp A";
             //---------------------------EGET---------------------------------------------------------//
 
             textInput.style.border = '5px solid black';
             textInput.style.margin = '50px';
-            textInput.style.padding = '50px;';  // ingen effekt? 
+            textInput.style.padding = '50px;';  // ingen effekt?
             textInput.style.alignContent = 'center';
-
-
-
-
-
+        }
+        // må gjøre endringer her for at koden skal fungere
+        function toggleStyle() {
+            var isChecked = document.getElementById('chk').checked;
+            var isChecked1 = document.getElementById('chk1').checked;
+            document.getElementByClass('test').classList.toggle('stilig', isChecked);
+            document.getElementByClass('test').classList.toggle('stilig', isChecked1);
         }
         function doSomethingB(clickedElement) {
             textInput.style.backgroundColor = 'blue';
