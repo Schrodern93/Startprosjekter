@@ -6,55 +6,87 @@
     <title></title>
     <style>
         #rect{
-            height: 200px;
-            width: 200px;
+            height: 50px;
+            width: 50px;
             outline: 1px solid black;
             position: relative;
+            background-color:red;
             vertical-align:top;
             
+            /*max-height:600px;
+            min-height:0px;
+            max-width:400px;
+            min-width:0px;*/
+
+            
+        }
+        .body{
+
+            height: 600px;
+            width: 800px;
+            border:solid;
+            border-width: 5px;
+
         }
     </style>
 </head>
 <body>
-
-    <div id="rect"></div>
+    <div class="body">
+        <div id="rect" style="position:relative"></div>
+    </div>
+         
 
     <script>
-
+          
         var r = document.getElementById("rect");
-        var left = 0;
-        var top = 0;
+        var testleft = 6;
+        var testtop = 6;
 
-        function flytt(e){
-
+        function flytt(e) {
+            var top = parseInt(rect.style.top);
+           
             //Dette er nedoverpilen
             if (e.keyCode == 40) {
-                top += 2;
-                rect.style.top = (parseInt(top) + top) + 'px';
-                console.log(rect.style);
+                testtop += 6;
+                rect.style.top = testtop + 'px';
+                if (testtop >= 550) {
+                    testtop += -6;
+                }
             }
             //Dette er høyre pil
              if (e.keyCode == 39) {
-                left += 2;
-                rect.style.left = (parseInt(left) + left) + 'px';
+                testleft += 6;
+                 rect.style.left = testleft + 'px';
+                 if (testleft >= 750) {
+                    testleft += -6;
+                }
             }
             //Dette er venstre pil
              if (e.keyCode == 37) {
-                left -= 2;
-                rect.style.left = (parseInt(left) + left) + 'px';
+                testleft -= 6;
+                 rect.style.left = testleft + 'px';
+                 if (testleft <= 0) {
+                    testleft += 6;
+                }
             }
             //dette er oppoverpilen
              if (e.keyCode == 38) {
-                top -= 2;
-                rect.style.top = (parseInt(top) + top) + 'px';
+                testtop -= 6;
+                 rect.style.top = testtop + 'px';
+                 if (testtop <= 0) {
+                    testtop += 6;
+                }
             }
 
-        }
-        document.addEventListener("keydown", function(event) {
-         console.log(event.which);
-            })
-        document.onkeydown = flytt;
+        };
+          document.onkeydown = flytt;
 
+        document.addEventListener("keydown", function (event) {
+            console.log(event.which);
+        });
+    
+      
+ 
         //må fikse minimumsgrense slik at den ikke forsvinner ut av skjermen
 
     </script>
