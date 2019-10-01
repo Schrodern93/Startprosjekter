@@ -6,9 +6,7 @@
     <title></title>
 
     <style>
-        /*.stilig {
-            background-color: blueviolet;
-        }
+     
 
         .before {
             content: "🡆";
@@ -65,31 +63,19 @@
 
 
     <script>
-        //var textInput = document.getElementById('text');
-        //var h2Element = document.getElementById('overskrift');
-
+       
+        var div1 = document.getElementById('div1');
         var chk1 = document.getElementById('chk1');
         var chk2 = document.getElementById('chk2');
         var chk3 = document.getElementById('chk3');
         var chk4 = document.getElementById('chk4');
         var chk5 = document.getElementById('chk5');
-        //var valgtDiv;
-        //classList.contains;
-        //console.log(classListContains());
+     
         var divs = document.getElementsByTagName('div');
         var chosenDiv = divs[Math.floor(Math.random() * divs.length)];
-         chooseDiv(currentDiv);
+         chooseDiv(div1);
 
-        //function toggleStyle(selectBox) {
-        //    var isChecked = document.getElementById('selectBox.id').checked;
-
-        //    document.getElementById('valgtDiv1').classList.toggle('chk1', isChecked);
-        //    document.getElementById('valgtDiv2').classList.toggle('chk2', isChecked);
-        //    document.getElementById('valgtDiv3').classList.toggle('chk3', isChecked);
-        //    document.getElementById('valgtDiv4').classList.toggle('chk4', isChecked);
-        //    document.getElementById('valgtDiv5').classList.toggle('chk5', isChecked);
-
-        //}
+      
         function chooseDiv(x) {
             chosenDiv.classList.remove('chosen');
             chosenDiv = x;
@@ -105,12 +91,7 @@
         function checkBox(y) {
             chosenDiv.classList.toggle(y.id, y.checked);
         }
-        //function classListContains() {
-
-        //    document.getElementById('checkboxId').checked = selectedDiv.classList.contains('test');
-
-
-        //}
+       
 
     </script>
 
