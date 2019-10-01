@@ -22,23 +22,36 @@
         var textInput = document.getElementById('text');
         var h2Element = document.getElementById('overskrift');
         function doSomethingA(clickedElement) {
+             //Disse endrer fargen på bakgrunnen når knapp A er trykt, bakgrunnsfarger som endres er tekstinputboksen, overskriftsboksen og teksten i knappen
             textInput.style.backgroundColor = 'aquamarine';
             h2Element.style.backgroundColor = 'aquamarine';
             clickedElement.style.backgroundColor = 'aquamarine';
 
+            //Disse endrer fargen på teksten når knapp A er trykt, tekst som endres er det i tekstinputboksen, overskriftsboksen og teksten i knappen
             textInput.style.color = 'black';
             h2Element.style.color = 'black';
             clickedElement.style.color = 'black';
-
+            //Disse endrer typen på teksten når knapp A er trykt, tekst som endres er det i tekstinputboksen, overskriftsboksen og teksten i knappen
             textInput.style.fontWeight = 'normal';
             h2Element.style.fontWeight = 'normal';
             clickedElement.style.fontWeight = 'normal';
-
+           //Disse endrer boksene slik at de får avrundede kanter når knapp A er trykt, bokser som endres er tekstinputboksen, overskriftsboksen og knappen
             textInput.classList.add('round');
             h2Element.classList.add('round');
             clickedElement.classList.add('round');
+            //Viser teksten "Trykket på knapp A"
+            textInput.value = "Trykket på knapp A \n adsfasdfasdfsdfaas";
+            //---------------------------EGET---------------------------------------------------------//
 
-            textInput.value = "Trykket på knapp A";
+            textInput.style.border = '5px solid black';
+            textInput.style.margin = '50px';
+            textInput.style.padding = '50px;';  // ingen effekt? 
+            textInput.style.alignContent = 'center';
+
+
+
+
+
         }
         function doSomethingB(clickedElement) {
             textInput.style.backgroundColor = 'blue';
