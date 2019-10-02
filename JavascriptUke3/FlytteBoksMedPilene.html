@@ -5,81 +5,123 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
+         .body{
+            height: 600px;
+            width: 800px;
+            border:solid;
+            border-width: 5px;
+        }
         #rect{
             height: 50px;
             width: 50px;
             outline: 1px solid black;
             position: relative;
             background-color:red;
-            vertical-align:top;
-            
-            /*max-height:600px;
-            min-height:0px;
-            max-width:400px;
-            min-width:0px;*/
-
-            
+            vertical-align:top;    
         }
-        .body{
-
-            height: 600px;
-            width: 800px;
-            border:solid;
-            border-width: 5px;
-
-        }
+       #spillerto{
+            height: 50px;
+            width: 50px;
+            outline: 1px solid black;
+            position: relative;
+            background-color:blue;
+            vertical-align:top;    
+       }
     </style>
 </head>
 <body>
     <div class="body">
         <div id="rect" style="position:relative"></div>
+        <div id="spillerto" style="position:relative"></div>
     </div>
          
-
     <script>
           
         var r = document.getElementById("rect");
-        var testleft = 6;
-        var testtop = 6;
-
+        var t = document.getElementById("spillerto");
+        var testleft = 10;
+        var testtop = 10;
+        var totop = 10;
+        var toleft = 10;
+       
         function flytt(e) {
-            var top = parseInt(rect.style.top);
-           
-            //Dette er nedoverpilen
+            
+           //Dette er nedoverpilen
             if (e.keyCode == 40) {
-                testtop += 6;
+                testtop += 10;
                 rect.style.top = testtop + 'px';
                 if (testtop >= 550) {
-                    testtop += -6;
+                    testtop += -10;
                 }
             }
             //Dette er høyre pil
              if (e.keyCode == 39) {
-                testleft += 6;
+                testleft += 10;
                  rect.style.left = testleft + 'px';
                  if (testleft >= 750) {
-                    testleft += -6;
+                    testleft += -10;
                 }
             }
             //Dette er venstre pil
              if (e.keyCode == 37) {
-                testleft -= 6;
+                testleft -= 10;
                  rect.style.left = testleft + 'px';
                  if (testleft <= 0) {
-                    testleft += 6;
+                    testleft += 10;
                 }
             }
             //dette er oppoverpilen
              if (e.keyCode == 38) {
-                testtop -= 6;
+                testtop -= 10;
                  rect.style.top = testtop + 'px';
                  if (testtop <= 0) {
-                    testtop += 6;
+                    testtop += 10;
                 }
             }
 
         };
-          document.onkeydown = flytt;
+
+        function move(b) {
+            
+           //Dette er nedoverpilen
+            if (b.keyCode == 83) {
+                totop += 10;
+                spillerto.style.top = totop + 'px';
+                if (totop >= 550) {
+                    totop += -10;
+                }
+            }
+            //Dette er høyre pil
+             if (b.keyCode == 68) {
+                toleft += 10;
+                 spillerto.style.left = toleft + 'px';
+                 if (toleft >= 750) {
+                    toleft += -10;
+                }
+            }
+            //Dette er venstre pil
+             if (b.keyCode == 65) {
+                toleft -= 10;
+                spillerto.style.left = toleft + 'px';
+                 if (toleft <= 0) {
+                    toleft += 10;
+                }
+            }
+            //dette er oppoverpilen
+             if (b.keyCode == 87) {
+                totop -= 10;
+                 spillerto.style.top = totop + 'px';
+                 if (totop <= 0) {
+                    totop += 10;
+                }
+            }
+
+        };
+        //for (keydown <= 50) {
+        //     kedown++;
+        document.onkeydown = flytt;
+        document.onkeydown = move;
+        //};
 
         document.addEventListener("keydown", function (event) {
             console.log(event.which);
