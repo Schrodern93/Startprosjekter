@@ -27,12 +27,15 @@
             background-color:blue;
             vertical-align:top;    
        }
+       div{
+           position:absolute;
+       }
     </style>
 </head>
 <body>
     <div class="body">
-        <div id="rect" style="position:relative"></div>
-        <div id="spillerto" style="position:relative"></div>
+        <div id="rect" style="position:absolute"></div>
+        <div id="spillerto" style="position:absolute"></div>
     </div>
          
     <script>
@@ -44,12 +47,50 @@
         var totop = 10;
         var toleft = 10;
        
-        function flytt(e) {
+        //function flytt(e) {
+         
+
+        function move(e) {
             
+           //Dette er nedoverpilen
+            if (e.keyCode == 83) {
+                totop += 10;
+                t.style.top = totop + 'px';
+                if (totop >= 550) {
+                    totop += -10;
+                }
+            }
+            //Dette er høyre pil
+             if (e.keyCode == 68) {
+                 toleft += 10;
+                 t.style.left = toleft + 'px';
+                 if (toleft >= 750) {
+                    toleft += -10;
+                }
+            }
+            //Dette er venstre pil
+             if (e.keyCode == 65) {
+                 toleft -= 10;
+                 t.style.left = toleft + 'px';
+                 if (toleft <= 0) {
+                    toleft += 10;
+                }
+            }
+            //dette er oppoverpilen
+             if (e.keyCode == 87) {
+                 totop -= 10;
+                 t.style.top = totop + 'px';
+                 if (totop <= 0) {
+                    totop += 10;
+                }
+            }
+
+            
+               
            //Dette er nedoverpilen
             if (e.keyCode == 40) {
                 testtop += 10;
-                rect.style.top = testtop + 'px';
+               r.style.top = testtop + 'px';
                 if (testtop >= 550) {
                     testtop += -10;
                 }
@@ -57,7 +98,7 @@
             //Dette er høyre pil
              if (e.keyCode == 39) {
                 testleft += 10;
-                 rect.style.left = testleft + 'px';
+                 r.style.left = testleft + 'px';
                  if (testleft >= 750) {
                     testleft += -10;
                 }
@@ -65,7 +106,7 @@
             //Dette er venstre pil
              if (e.keyCode == 37) {
                 testleft -= 10;
-                 rect.style.left = testleft + 'px';
+                 r.style.left = testleft + 'px';
                  if (testleft <= 0) {
                     testleft += 10;
                 }
@@ -73,53 +114,16 @@
             //dette er oppoverpilen
              if (e.keyCode == 38) {
                 testtop -= 10;
-                 rect.style.top = testtop + 'px';
+                r.style.top = testtop + 'px';
                  if (testtop <= 0) {
                     testtop += 10;
                 }
             }
 
         };
-
-        function move(b) {
-            
-           //Dette er nedoverpilen
-            if (b.keyCode == 83) {
-                totop += 10;
-                spillerto.style.top = totop + 'px';
-                if (totop >= 550) {
-                    totop += -10;
-                }
-            }
-            //Dette er høyre pil
-             if (b.keyCode == 68) {
-                toleft += 10;
-                 spillerto.style.left = toleft + 'px';
-                 if (toleft >= 750) {
-                    toleft += -10;
-                }
-            }
-            //Dette er venstre pil
-             if (b.keyCode == 65) {
-                toleft -= 10;
-                spillerto.style.left = toleft + 'px';
-                 if (toleft <= 0) {
-                    toleft += 10;
-                }
-            }
-            //dette er oppoverpilen
-             if (b.keyCode == 87) {
-                totop -= 10;
-                 spillerto.style.top = totop + 'px';
-                 if (totop <= 0) {
-                    totop += 10;
-                }
-            }
-
-        };
         //for (keydown <= 50) {
         //     kedown++;
-        document.onkeydown = flytt;
+        //document.onkeydown = flytt;
         document.onkeydown = move;
         //};
 
