@@ -7,15 +7,6 @@
 
     <style>
 
-
-        /*.before {
-            content: "🡆";
-        }
-
-        .after {
-            content: "🡄";
-
-        }*/
         div {
             text-align: center;
             color: black;
@@ -40,56 +31,70 @@
 
     <!--Div 1 til 5 blir aktivert på onclick og kjører funksjonen chooseDiv()-->
     <div id="div1" onclick="chooseDiv(this)" onchange="calculate(this)">Div1</div>
-    <div id="div2" onclick="chooseDiv(this)">Div2</div>
+    <div id="div2" onclick="chooseDiv(this)" onchange="calculate(this)">Div2</div>
 
     <br />
 
     <!--Inputen skal reagere på endring (onchange) der den bruker funksjonen checkBox. Inputen er en checkbox som kan ha verdiene markert eller ikke markert.-->
-    <input id="chk1" type="checkbox" onchange="checkBox(this)">1</input>
-    <input id="chk2" type="checkbox" onchange="checkBox(this)">2</input>
-    <input id="tallA" type="range" min="0" max="100" step="1" onchange="calculate(this)" value="2">1</input>
-    <input id="tallB" type="range" min="0" max="100" step="1" onchange="calculate(this)" value="2">2</input>
+    <!--<input id="chk1" type="checkbox" onchange="checkBox(this)">1</input>
+    <input id="chk2" type="checkbox" onchange="checkBox(this)">2</input>-->
+    <input id="tallA" type="range" min="0" max="200" step="1" oninput=" calculate(this)" value="20">1</input>
+    <input id="tallB" type="range" min="0" max="100" step="1" oninput=" calculate(this)" value="20">2</input>
 
+    <div id="resultat"></div>
     <script>
 
         var div1 = document.getElementById('div1');
+        var div2 = document.getElementById('div2');
         var chk1 = document.getElementById('chk1');
         var chk2 = document.getElementById('chk2');
         var tallA = document.getElementById('tallA');
         var tallB = document.getElementById('tallB');
+         var resultatDiv = document.getElementById('resultat');
 
         var divs = document.getElementsByTagName('div'); //Henter verdien til den valgte diven og lagrer den i divs
         var chosenDiv = divs[Math.floor(Math.random() * divs.length)]; //lager en liste av antal diver
         chooseDiv(div1); //startverdi for chosenDiv er div1
-
+        //calculate();
 
         function chooseDiv(x) {
             chosenDiv.classList.remove('chosen');
             chosenDiv = x;
             chosenDiv.classList.add('chosen');
-
             chk1.checked = chosenDiv.classList.contains('chk1');
             chk2.checked = chosenDiv.classList.contains('chk2');
 
-
-        }
-        function checkBox(y) {
-            chosenDiv.classList.toggle(y.id, y.checked);
         }
 
         function calculate() {
-            var tallA = parseInt(tallAInput.value);
-            var tallB = parseInt(tallBInput.value);
+            var A = parseInt(tallA.value);
+            var B = parseInt(tallB.value);
 
-            resultatDiv.innerHTML = '';
+            if (div1 == chosenDiv) {
+                div1.innerHTML = '<div style="'
+                    + 'background-color: green;'
+                    + 'width: ' + A + 'px;'
+                    + 'height: ' + B + 'px;'
+                    + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
+                    + '">' + '</div>';
+            }
+            if (div2 == chosenDiv) {
+                div2.innerHTML = '<div style="'
+                    + 'background-color: green;'
+                    + 'width: ' + A + 'px;'
+                    + 'height: ' + B + 'px;'
+                    + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
+                    + '">' + '</div>';
+            }
+        //    if (tallA == tallB) {
+        //    resultatDiv.innerHTML += '== Tallene er like';
+        //} else {
+        //    resultatDiv.innerHTML += '== <del>Tallene er like</del>';
+        //}
 
-            div1.innerHTML = '<div style="'
-                + 'background-color: green ' + ';'
-                + 'width: ' + tallA + 'px;'
-                + 'height: ' + tallB + 'px;'
-                + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
-                + '">' + '</div>';
         }
+
+        
 
     </script>
 
