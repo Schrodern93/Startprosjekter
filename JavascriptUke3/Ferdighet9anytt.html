@@ -43,6 +43,7 @@
 
     <div id="resA" type="text" oninput="calculate()">Verdi A</div>
     <div id="resB" type="text" oninput="calculate()">Verdi B</div>
+    <p> <div id="resultat">Info</div></p>
     <script>
 
         var div1 = document.getElementById('div1');
@@ -53,13 +54,14 @@
         var tallB = document.getElementById('tallB');
         var resultatA = document.getElementById('resA');
         var resultatB = document.getElementById('resB');
-
+        var resultatDiv = document.getElementById('resultat');
+        
 
         var divs = document.getElementsByTagName('div'); //Henter verdien til den valgte diven og lagrer den i divs
         var chosenDiv = divs[Math.floor(Math.random() * divs.length)]; //lager en liste av antal diver
         chooseDiv(div1); //startverdi for chosenDiv er div1
         //calculate();
-
+        calculate();
         function chooseDiv(x) {
             chosenDiv.classList.remove('chosen');
             chosenDiv = x;
@@ -72,6 +74,7 @@
         function calculate() {
             var A = parseInt(tallA.value);
             var B = parseInt(tallB.value);
+            resultatDiv.innerHTML = '';
 
             if (div1 == chosenDiv) {
                 div1.innerHTML = '<div style="'
@@ -80,7 +83,7 @@
                     + 'height: ' + B + 'px;'
                     + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
                     + '">' + '</div>';
-                resultatA.innerHTML += '<br/> Areal: ' + (tallA.value * tallB.value);
+                resultatA.innerHTML = '<br/> ArealA: ' + (tallA.value * tallB.value);
             }
             if (div2 == chosenDiv) {
                 div2.innerHTML = '<div style="'
@@ -89,9 +92,51 @@
                     + 'height: ' + B + 'px;'
                     + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
                     + '">' + '</div>';
-                resultatB.innerHTML += '<br/> Areal: ' + (tallA.value * tallB.value);
+                resultatB.innerHTML = '<br/> ArealB: ' + (tallA.value * tallB.value);
             }
 
+
+
+            //if (A < B) {
+
+            //    resA.innerHTML = 'Boks A har størst areal'
+            //}
+            //if (B > A) {
+            //    resB.innerHTML = 'Boks B har størst areal'
+            //}
+            //if (B == A) {
+            //    resB.innerHTML = 'Begge boksene er like'
+            //}
+            if (resultatA == resultatB) {
+                resultatDiv.innerHTML += '== Tallene er like';
+            } else {
+                resultatDiv.innerHTML += '== <del>Tallene er like</del>';
+            }
+            if (resA != resB) {
+                resultatDiv.innerHTML += '<br/>!= Tallene er ulike';
+            } else {
+                resultatDiv.innerHTML += '<br/> != <del>Tallene er ulike</del>';
+            }
+            if (resultatA.value >= resultatB.value) {
+                resultatDiv.innerHTML += '<br/> >= ' + resultatA.value + ' er større enn eller lik ' + resultatB.value;
+            } else {
+                resultatDiv.innerHTML += '<br/>>= <del>' + resultatA.value + ' er større enn eller lik ' + resultatB.value + '</del>';
+            }
+            if (resA > resB) {
+                resultatDiv.innerHTML += '<br/>> ' + resultatA + ' er større enn ' + resultatB;
+            } else {
+                resultatDiv.innerHTML += '<br/>> <del>' + resultatA + ' er større enn ' + resultatB + '</del>';
+            }
+            if (resA <= resB) {
+                resultatDiv.innerHTML += '<br/><= ' + resultatA + ' er mindre enn eller lik ' + resultatB;
+            } else {
+                resultatDiv.innerHTML += '<br/><= <del>' + resultatA + ' er mindre enn eller lik ' + resultatB + '</del>';
+            }
+            if (resA < resB) {
+                resultatDiv.innerHTML += '<br/>< ' + resultatA + ' er mindre enn ' + resultatB;
+            } else {
+                resultatDiv.innerHTML += '<br/>< <del>' + resultatA + ' er mindre enn ' + resultatB + '</del>';
+            }
 
 
 
