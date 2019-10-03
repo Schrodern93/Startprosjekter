@@ -30,18 +30,19 @@
 <body>
 
     <!--Div 1 til 5 blir aktivert på onclick og kjører funksjonen chooseDiv()-->
-    <div id="div1" onclick="chooseDiv(this)" onchange="calculate(this)">Div1</div>
-    <div id="div2" onclick="chooseDiv(this)" onchange="calculate(this)">Div2</div>
+    <div id="div1" onclick="chooseDiv(this)" onchange="calculate(this)">A</div>
+    <div id="div2" onclick="chooseDiv(this)" onchange="calculate(this)">B</div>
+
 
     <br />
 
     <!--Inputen skal reagere på endring (onchange) der den bruker funksjonen checkBox. Inputen er en checkbox som kan ha verdiene markert eller ikke markert.-->
-    <!--<input id="chk1" type="checkbox" onchange="checkBox(this)">1</input>
-    <input id="chk2" type="checkbox" onchange="checkBox(this)">2</input>-->
+
     <input id="tallA" type="range" min="0" max="200" step="1" oninput=" calculate(this)" value="20">1</input>
     <input id="tallB" type="range" min="0" max="100" step="1" oninput=" calculate(this)" value="20">2</input>
 
-    <div id="resultat"></div>
+    <div id="resA" type="text" oninput="calculate()">Verdi A</div>
+    <div id="resB" type="text" oninput="calculate()">Verdi B</div>
     <script>
 
         var div1 = document.getElementById('div1');
@@ -50,7 +51,9 @@
         var chk2 = document.getElementById('chk2');
         var tallA = document.getElementById('tallA');
         var tallB = document.getElementById('tallB');
-         var resultatDiv = document.getElementById('resultat');
+        var resultatA = document.getElementById('resA');
+        var resultatB = document.getElementById('resB');
+
 
         var divs = document.getElementsByTagName('div'); //Henter verdien til den valgte diven og lagrer den i divs
         var chosenDiv = divs[Math.floor(Math.random() * divs.length)]; //lager en liste av antal diver
@@ -61,8 +64,8 @@
             chosenDiv.classList.remove('chosen');
             chosenDiv = x;
             chosenDiv.classList.add('chosen');
-            chk1.checked = chosenDiv.classList.contains('chk1');
-            chk2.checked = chosenDiv.classList.contains('chk2');
+            //chk1.checked = chosenDiv.classList.contains('chk1');
+            //chk2.checked = chosenDiv.classList.contains('chk2');
 
         }
 
@@ -77,6 +80,7 @@
                     + 'height: ' + B + 'px;'
                     + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
                     + '">' + '</div>';
+                resultatA.innerHTML += '<br/> Areal: ' + (tallA.value * tallB.value);
             }
             if (div2 == chosenDiv) {
                 div2.innerHTML = '<div style="'
@@ -85,16 +89,21 @@
                     + 'height: ' + B + 'px;'
                     + 'text-align:center;' + 'vertical-align: middle;' + 'line-height:' + 2 + 'px;'
                     + '">' + '</div>';
+                resultatB.innerHTML += '<br/> Areal: ' + (tallA.value * tallB.value);
             }
-        //    if (tallA == tallB) {
-        //    resultatDiv.innerHTML += '== Tallene er like';
-        //} else {
-        //    resultatDiv.innerHTML += '== <del>Tallene er like</del>';
-        //}
+
+
+
+
+
+            //    if (tallA == tallB) {
+            //    resultatDiv.innerHTML += '== Tallene er like';
+            //} else {
+            //    resultatDiv.innerHTML += '== <del>Tallene er like</del>';
+            //}
 
         }
 
-        
 
     </script>
 
