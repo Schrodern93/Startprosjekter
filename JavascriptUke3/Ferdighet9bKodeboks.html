@@ -109,36 +109,29 @@
     <script>
         var correctCode = '8521';
         var enteredSoFar = '';
-        alert("Velkommen til kodeboksen.\nDen har 4 tall, trykk bekreft når du har tastet fire tall")
-        var tastet = "";
-
-
-        if( !correctCode.startsWith( enteredSoFar ) )
-
-
-
-
+   
         function trykkPåTall(par1) {
-            tastet += par1.innerHTML;
-            console.log(tastet);
-            document.getElementById("typed").innerHTML = tastet;
-
-        }
+            enteredSoFar += par1.innerHTML;
+            document.getElementById("typed").innerHTML = enteredSoFar;
+            //if (enteredSoFar.length <= 4) {
+                 if (correctCode.startsWith(enteredSoFar) && enteredSoFar.length < 4 ) { // array begynner å telle på null, dvs at man må bruke mindre en 4  eller = 3
+                 }
+            else {
+                (enteredSoFar = '');
+                 }
+        }  
         function refresh() {
-            if (tastet == '8312') {
+            console.log(enteredSoFar);
+            if (enteredSoFar == correctCode) {
                 alert("Riktig kode");
-                tastet = "";
-            } else {
+                enteredSoFar = "";
+            }
+            else {
                 alert("Feil");
                 document.getElementById("typed").innerHTML = "";
-                tastet = "";
-            }
-
+                enteredSoFar = "";
+            }    
         }
-
-
-
-
     </script>
 
 </body>
