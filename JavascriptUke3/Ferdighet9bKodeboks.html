@@ -107,21 +107,22 @@
     <p id="typed">test</p>
 
     <script>
-        var correctCode = '8521';
+        var correctCode ='8521';
         var enteredSoFar = '';
    
         function trykkPåTall(par1) {
             enteredSoFar += par1.innerHTML;
-            document.getElementById("typed").innerHTML = enteredSoFar;
+            
             //if (enteredSoFar.length <= 4) {
-                 if (correctCode.startsWith(enteredSoFar) && enteredSoFar.length < 4 ) { // array begynner å telle på null, dvs at man må bruke mindre en 4  eller = 3
+                 if (correctCode.startsWith(enteredSoFar) && enteredSoFar.length <= 4 ) { // array begynner å telle på null, dvs at man må bruke mindre en 4 
                  }
             else {
                 (enteredSoFar = '');
-                 }
+            }
+            document.getElementById("typed").innerHTML = enteredSoFar;
         }  
         function refresh() {
-            console.log(enteredSoFar);
+            console.log(enteredSoFar + ' ' + correctCode);
             if (enteredSoFar == correctCode) {
                 alert("Riktig kode");
                 enteredSoFar = "";
