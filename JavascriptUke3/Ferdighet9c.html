@@ -13,54 +13,88 @@
 </head>
 <body>
     <p>Ferdighet 9c - Valgsetninger - Sammenligne to objekter (f.eks. er det samme div-element i to elementer?)</p>
-    <pre>
+    
         <div id="a" onclick="doClick(this)" style="background-color: pink">A</div>
         <div id="b" onclick="doClick(this)" style="background-color: lightgreen">B</div>
         <div id="c" onclick="doClick(this)" style="background-color: lightblue">C</div>
-        <div id="info" onclick="doClick(this)">Tykk på en firkant!</div>
-        <div id="forrige" onclick="doClick(this)">Her skal forrige verdi stå</div>
-    </pre>
+        <div id="info">Trykk på en firkant!</div>
+        <!--<div id="forrige" onclick="doClick(this)">Her skal forrige verdi stå</div>-->
+    
     <script>
         var infoDiv = document.getElementById('info');
         var divA = document.getElementById('a');
         var divB = document.getElementById('b');
         var divC = document.getElementById('c');
+
         var buttonLastClicked;
-        var prevbuttonClicked = document.getElementById('forrige');
+        var prevbuttonClicked;
+
         var numberofclicksA = 0;
         var numberofclicksB = 0;
         var numberofclicksC = 0;
+        var totalclicks = 0;
 
         function doClick(buttonClicked) {
             infoDiv.innerHTML = 'Du trykket på firkant ';
+
             if (buttonClicked == divA) {
                 infoDiv.innerHTML += 'A';
+
                 numberofclicksA++;
+                totalclicks++;
+
+                if (totalclicks == 1) {
+                    prevbuttonClicked = buttonClicked;
+                }
+                else if (totalclicks == 2) {
+                    buttonLastClicked = buttonClicked;
+                }
 
             }
             else if (buttonClicked == divB) {
                 infoDiv.innerHTML += 'B';
+
                 numberofclicksB++;
+                totalclicks++;
+
+                if (totalclicks == 1) {
+                    prevbuttonClicked = buttonClicked;
+                }
+                else if (totalclicks == 2) {
+                    buttonLastClicked = buttonClicked;
+                }
             }
             else if (buttonClicked == divC) {
                 infoDiv.innerHTML += 'C';
+
                 numberofclicksC++;
+                totalclicks++;
+
+                 if (totalclicks == 1) {
+                    prevbuttonClicked = buttonClicked;
+                }
+                else if (totalclicks == 2) {
+                    buttonLastClicked = buttonClicked;
+                }
             }
-            if (buttonLastClicked == buttonClicked && numberofclicksA == 3 || numberofclicksB == 3 || numberofclicksC == 3) {
-                infoDiv.innerHTML += ' (Du trykket på samme boks 3 ganger)';
+            if ( numberofclicksA == 3 || numberofclicksB == 3 || numberofclicksC == 3) {
+                infoDiv.innerHTML += '<br> (Du trykket på samme boks 3 ganger)'
                 if (numberofclicksA == 3) { numberofclicksA = 0; }
                 if (numberofclicksB == 3) { numberofclicksB = 0; }
                 if (numberofclicksC == 3) { numberofclicksC = 0; }
             }
 
-            else if (buttonLastClicked == prevbuttonClicked && numberofclicksA == 2 || numberofclicksB == 2 || numberofclicksC == 2) {
-                infoDiv.innerHTML += ' (Du trykket på samme boks 2 ganger)';
-                }
-                 buttonLastClicked = buttonClicked;
-                 prevbuttonClicked = buttonClicked;
+            else if ( numberofclicksA == 2 || numberofclicksB == 2 || numberofclicksC == 2) {
+                infoDiv.innerHTML += '<br> (Du trykket på samme boks 2 ganger)'
+            }
+            if (totalclicks == 3){totalclicks = 0; }
+
+            infoDiv.innerHTML += '<br> Før det trykket du på ' + buttonLastClicked.innerHTML;
+            infoDiv.innerHTML += '<br> Før det igjen trykket du på ' + prevbuttonClicked.innerHTML;
+               
              
         };
-        console.log(prevbuttonClicked);
+      
     </script>
 </body>
 </html>
