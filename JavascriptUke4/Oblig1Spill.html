@@ -80,7 +80,7 @@
         </div>
         <div class="knapp">
             <p>Spiller 1</p>
-            <select id="colorChooser" onchange="byttFarge()">
+            <select id="brikkeVelger1" onchange="byttBrikke1()">
                 <option selected value="O">O</option>
                 <option value="1">1</option>
                 <option value="@">@</option>
@@ -88,7 +88,7 @@
 
             </select>
             <p>Spiller 2</p>
-            <select id="colorChooser" onchange="byttFarge()">
+            <select id="brikkeVelger2" onchange="byttBrikke2()">
                 <option value="?">?</option>
                 <option value="2">2</option>
                 <option selected value="X">X</option>
@@ -116,39 +116,34 @@
     <script>
         var valgtSpiller = 1;
         var farge1 = document.getElementById('endre');
-
+        var brikkeVelger1 = document.getElementById('brikkeVelger1');
+        var brikkeVelger2 = document.getElementById('brikkeVelger2');
+        var boks = '';
         
         function teller(boks) {
            
 
             if (valgtSpiller == 1) {
 
-                boks.innerHTML = 'O';
+                boks.innerHTML = brikkeVelger1.value ;
                 valgtSpiller++;
                 valgtSpiller = valgtSpiller;
                 
             } else {
-                boks.innerHTML = 'X';
+                boks.innerHTML = brikkeVelger2.value ;
                 valgtSpiller--;
             }
             
         }
-         function byttFarge() {
-            farge1.innerHTML = '<div style="'
-                + 'background-color: ' + colorChooser.value + ';'
-                + 'width: ' + 400 + 'px;'
-                + 'height: ' + 400 + 'px;'
-                + '">' + '</div>';
+         function byttBrikke1() {
+             boks.innerHTML =   brikkeVelger1.value;
 
         }
-        //function byttFarge() {
-        //    farge1.innerHTML = '<div style="'
-        //        + 'background-color: ' + colorChooser.value + ';'
-        //        + 'width: ' + 400 + 'px;'
-        //        + 'height: ' + 400 + 'px;'
-        //        + '">' + '</div>';
+          function byttBrikke2() {
+             boks.innerHTML =   brikkeVelger2.value;
 
-        //}
+        }
+      
 
     </script>
 
