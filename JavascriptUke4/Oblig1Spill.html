@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+
+        div.page {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 2fr 1fr;
+            /*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+            grid-template-areas: 'knapp top top' 
+                                 'knapp spill ramme' 
+                                'bottom bottom bottom';
+        }
+
+        div.top {
+            grid-area: top;
+        }
+         div.ramme {
+            grid-area: ramme;
+        }
+          div.spill {
+            grid-area: spill;
+            background-color: lightblue;
+            height: 400px;
+            width:400px;
+            border: solid;
+            border-color:black;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+          div.ruter{
+              border:dotted;
+              border-color:lightcoral;
+          }
+
+        div.bottom {
+            grid-area: bottom;
+        }
+
+        div.knapp {
+            grid-area: knapp;
+        } 
+        .boks {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 40px;
+        font-size: 35px;
+        text-align: center;
+        vertical-align:30px;
+        min-width: 50px;
+        min-height:50px;
+           }
+        h2{
+            text-align:center;
+             font-size: 80px;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <div class="page">
+        <div class="top">
+            <h1>-----Velkommen til 3 på rad-----</h1> 
+        </div>
+        <div class="knapp">
+            <p>Spiller 1</p>
+            <select id="colorChooser" onchange="byttFarge()">
+                <option selected value="O">O</option>
+                <option value="1">1</option>
+                <option value="@">@</option>
+                <option value="&">&</option>
+
+            </select>
+            <p>Spiller 2</p>
+            <select id="colorChooser" onchange="byttFarge()">
+                <option value="?">?</option>
+                <option value="2">2</option>
+                <option selected value="X">X</option>
+                <option value="Ø">Ø</option>
+                
+            </select>
+        </div>
+        <div class="spill">
+           
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+                    <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
+       
+        </div>
+        <div class="ramme"></div>
+        <div class="bottom"></div>
+    </div>
+
+    <script>
+        var valgtSpiller = 1;
+        var farge1 = document.getElementById('endre');
+
+        
+        function teller(boks) {
+           
+
+            if (valgtSpiller == 1) {
+
+                boks.innerHTML = 'O';
+                valgtSpiller++;
+                valgtSpiller = valgtSpiller;
+                
+            } else {
+                boks.innerHTML = 'X';
+                valgtSpiller--;
+            }
+            
+        }
+         function byttFarge() {
+            farge1.innerHTML = '<div style="'
+                + 'background-color: ' + colorChooser.value + ';'
+                + 'width: ' + 400 + 'px;'
+                + 'height: ' + 400 + 'px;'
+                + '">' + '</div>';
+
+        }
+        //function byttFarge() {
+        //    farge1.innerHTML = '<div style="'
+        //        + 'background-color: ' + colorChooser.value + ';'
+        //        + 'width: ' + 400 + 'px;'
+        //        + 'height: ' + 400 + 'px;'
+        //        + '">' + '</div>';
+
+        //}
+
+    </script>
+
+
+</body>
+</html>

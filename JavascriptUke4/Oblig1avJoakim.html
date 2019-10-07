@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+
+        div.page{
+            margin: 0; 
+            padding: 0; 
+            height: 100vh;
+            display: grid;
+            
+            grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 10fr 10fr ;
+			/*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+			grid-template-areas:'knapp knapp'
+                                'top top'
+								'bottom bottom';
+
+        }
+
+        div.top{
+            grid-area: top; 
+            
+        }
+        div.bottom{
+            grid-area: bottom;
+           
+        }
+        div.knapp{
+            grid-area:knapp;
+           
+        }
+        
+
+
+
+    </style>
+
+
+</head>
+<body>
+    <div class="page">
+        <div class="knapp">
+
+            <select id="colorChooser" onchange="byttFarge()">
+                <option value="red">Red color</option>
+                <option value="green">Green color</option>
+                <option selected value="white">White color</option>
+                <option value="blue">Blue color</option>
+                <option value="orange">Orange color</option>
+                <option value="purple">Purple color</option>
+                <option value="brown">Brown color</option>
+            </select>
+
+            <h2 onclick="doSomething(this)">TOP</h2>  <h2 onclick="doSomething(this)">BOTTOM</h2>
+
+        </div>
+        <div class="top" id="top" style="width: 100vw; height: 50vh;">
+           
+
+        </div>
+        
+        <div class="bottom" id="bottom" style="width: 100vw; height: 50vh;">
+           
+        </div>
+    </div> 
+
+
+    <script>
+
+        var farge1 = document.getElementById('bottom');
+        var farge2 = document.getElementById('top');
+        var colorChooser = document.getElementById('colorChooser');
+      
+        
+        byttFarge();
+
+        function doSomething(endre) {
+          
+         endre.innerHTML = 'BYTTA';
+        }
+
+        function byttFarge(){
+            farge1.innerHTML = '<div style="'
+                + 'background-color: ' + colorChooser.value + ';'
+                + 'width: ' + 100 + 'vw;'
+                + 'height: ' + 50 + 'vh;'
+                + '">' + '</div>';
+
+            if (colorChooser.value == 'red') {
+                farge2.innerHTML = '<div style="'
+                    + 'background-color: green ;'
+                    + 'width: ' + 100 + 'vw;'
+                    + 'height: ' + 50 + 'vh;'
+
+                    + '">' +
+                    '</div>';
+            }
+            else {
+                 farge2.innerHTML = '<div style="'
+                + 'background-color: black ;'
+                + 'width: ' + 100 + 'vw;'
+                + 'height: ' + 50 + 'vh;'
+               
+                + '">' +
+                '</div>';
+            }
+            console.log(farge2.innerHTML);
+        }
+
+
+    </script>
+
+
+</body>
+</html>
