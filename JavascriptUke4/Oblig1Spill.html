@@ -6,7 +6,7 @@
     <title></title>
 
     <style>
-        body{
+        body{ 
             margin:0;
             padding:0;
         }
@@ -24,79 +24,69 @@
                                 'bottom bottom bottom';
         }
 
+        /*Her gir jeg divene plassering i gridopsettet og legger til effekter og betingelser*/
         div.top {
             grid-area: top;
+           
         }
          div.ramme {
             grid-area: ramme;
         }
-          div.spill {
-            grid-area: spill;
-            background-color: lightblue;
-            height: 400px;
-            width:400px;
-            border: solid;
-            border-color:black;
-            display: grid;
-            grid-template-columns: auto auto auto;
-            background-color: #2196F3;
-            padding: 10px;
-        }
-          div.ruter{
-              border:dotted;
-              border-color:lightcoral;
-          }
-
-        div.bottom {
+          div.bottom {
             grid-area: bottom;
         }
 
         div.knapp {
             grid-area: knapp;
         } 
-        .boks {
-        background-color: rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.8);
+        
+        div.spill {
+            grid-area: spill;
+            /*height: 400px;
+            width:400px;*/
+            border: solid;
+            border-color:black;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            background-color: #150098;
+            padding: 10px;
+        }
+       
+        div.boks {
+        background-color: lightblue;          
+        border: 1px solid black;
         padding: 40px;
         font-size: 35px;
         text-align: center;
         vertical-align:30px;
         min-width: 50px;
         min-height:50px;
-           }
-        h2{
-            text-align:center;
-             font-size: 80px;
         }
     </style>
 
-
-
 </head>
 <body>
-    <div class="page">
+    <div class="page"> <!--Hovedklassen page som inneholder alle andre klasser og som inneholder css grid-->
         <div class="top">
             <h1>-----Velkommen til 3 på rad-----</h1> 
         </div>
         <div class="knapp">
             <p>Spiller 1</p>
-            <select id="brikkeVelger1" onchange="byttBrikke1()">
+            <select id="brikkeVelger1" onchange="byttBrikke1()"> <!--Nedtrekksmeny for valg av brikker for spiller 1--> 
                 <option selected value="O">O</option>
                 <option value="1">1</option>
                 <option value="@">@</option>
                 <option value="&">&</option>
-
             </select>
             <p>Spiller 2</p>
-            <select id="brikkeVelger2" onchange="byttBrikke2()">
+            <select id="brikkeVelger2" onchange="byttBrikke2()"> <!--Nedtrekksmeny for valg av brikker for spiller 2--> 
                 <option value="?">?</option>
                 <option value="2">2</option>
                 <option selected value="X">X</option>
-                <option value="Ø">Ø</option>
-                
+                <option value="Ø">Ø</option>    
             </select>
         </div>
-        <div class="spill">
+        <div class="spill"> <!--Her lager jeg alle boksene og hva som skal skje når man trykker på de-->
            
                     <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
                     <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
@@ -107,7 +97,7 @@
                     <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
                     <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
                     <div class="boks" style="cursor:pointer" onclick="teller(this)"></div>
-       
+
         </div>
         <div class="ramme"></div>
         <div class="bottom"></div>
@@ -115,41 +105,30 @@
 
     <script>
         var valgtSpiller = 1;
-        var farge1 = document.getElementById('endre');
         var brikkeVelger1 = document.getElementById('brikkeVelger1');
         var brikkeVelger2 = document.getElementById('brikkeVelger2');
-        var boks = '';
-        
-        function teller(boks) {
-           
 
+        //Denne funksjonen velger hvilken spiller det er sin tur og setter boks.innerHTML til gitt verdi
+        function teller(boks) {
+  
             if (valgtSpiller == 1) {
 
                 boks.innerHTML = brikkeVelger1.value ;
                 valgtSpiller++;
-                valgtSpiller = valgtSpiller;
                 
             } else {
                 boks.innerHTML = brikkeVelger2.value ;
                 valgtSpiller--;
-            }
-            
+            }  
         }
+        //Disse funksjonen setter verdien til boks.innerHTML slik at man kan velge brikke i starten
          function byttBrikke1() {
-             boks.innerHTML =   brikkeVelger1.value;
-
+             boks.innerHTML =  brikkeVelger1.value;
         }
           function byttBrikke2() {
-             boks.innerHTML =   brikkeVelger2.value;
-
+             boks.innerHTML =  brikkeVelger2.value;
         }
-      
-
     </script>
-
-    <!--Ting som må gjøres:   1. legge til en vinnerfunksjon som sjekker, 2. legge til en refreshknapp(ikke så viktig)-->
-
-
-
+    <!--Ting jeg lurer på:   1. legge til en vinnerfunksjon som sjekker hvem som har vunnet hvordan skal jeg gjøre det?-->
 </body>
 </html>
