@@ -4,55 +4,41 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <style>
-
-        div.bottom{
-
-            height: 200px;
-            width: 200px;
-
-        }
-
-
-    </style>
-
 </head>
 <body>
-
-
-    <div class="knapper">
-        <select id="colorChooser" onchange="byttFarge()">
-            <option selected value="black">Black color</option>
-            <option value="dark blue">Dark blue color</option>
-            <option value="light grey">Light grey color</option>
-            <option value="light green">Light green color</option>
-            <option value="pink">Pink color</option>
-
-        </select>
-    </div>
-    <div class="bottom" id="bottom" style="width: 200px; height: 200px">test</div>
-
+            <select id="colorChooser" onchange="byttFarge1()">
+                <option selected value="black">Black color</option>
+                <option value="darkblue">Dark blue color</option>
+                <option value="lightgrey">Light grey color</option>
+                <option value="lightgreen">Light green color</option>
+                <option value="pink">Pink color</option>
+            </select>
+        <div id="bottom"></div>
     <script>
-        var farge = document.getElementById('bottom');
+        var farge1 = document.getElementById('bottom');
         var colorChooser = document.getElementById('colorChooser');
 
-        byttFarge();
+        byttFarge1();
 
-        function byttFarge() {
-            farge.innerHtml = '<div style="'
+        function byttFarge1() {
+            if (colorChooser.value == 'black' || colorChooser.value == 'darkblue') {
+                farge1.innerHTML = '<div style="'
+                    + 'background-color: ' + colorChooser.value + ';'
+                    + 'width: ' + 200 + 'px;'
+                    + 'height: ' + 200 + 'px;'
+                    + '">' + '</div>';
+                document.body.style.backgroundColor = 'white';
+                return;
+            }
+            else {
+            farge1.innerHTML = '<div style="'
                 + 'background-color: ' + colorChooser.value + ';'
                 + 'width: ' + 200 + 'px;'
                 + 'height: ' + 200 + 'px;'
                 + '">' + '</div>';
-
-
+                document.body.style.backgroundColor = 'black';
+            }
         }
-
-        console.log(farge.innerHTML);
-
     </script>
-
-
-
 </body>
 </html>
