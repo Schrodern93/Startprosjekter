@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+
+        div.bottom{
+
+            height: 200px;
+            width: 200px;
+
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+
+    <div class="knapper">
+        <select id="colorChooser" onchange="byttFarge()">
+            <option selected value="black">Black color</option>
+            <option value="dark blue">Dark blue color</option>
+            <option value="light grey">Light grey color</option>
+            <option value="light green">Light green color</option>
+            <option value="pink">Pink color</option>
+
+        </select>
+    </div>
+    <div class="bottom" id="bottom" style="width: 200px; height: 200px">test</div>
+
+    <script>
+        var farge = document.getElementById('bottom');
+        var colorChooser = document.getElementById('colorChooser');
+
+        byttFarge();
+
+        function byttFarge() {
+            farge.innerHtml = '<div style="'
+                + 'background-color: ' + colorChooser.value + ';'
+                + 'width: ' + 200 + 'px;'
+                + 'height: ' + 200 + 'px;'
+                + '">' + '</div>';
+
+
+        }
+
+        console.log(farge.innerHTML);
+
+    </script>
+
+
+
+</body>
+</html>
