@@ -5,49 +5,27 @@
     <meta charset="utf-8" />
     <title></title>
 </head>
-<body onload="endreAlt(info1)">
-    <!--<p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
-    <input type="text" onchange="testOnChange()" oninput="testOnInput()" />
-    <h3 onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()">Test test test</h3>
-    <h2 id="info"></h2>-->
-
+<body onload="endreAlt('onload')">
+   
     <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
-    <input type="text" onchange="endreAlt(info1)" oninput="endreAlt(info1)" />
-    <h3 onmouseover="endreAlt(info1)" onmouseout="endreAlt(info1)">Test test test</h3>
+    <input type="text" onchange="endreAlt('onchange')" oninput="endreAlt('oninput')" />
+    <h3 onmouseover="endreAlt('onmouseover')" onmouseout="endreAlt('onmouseout')">Test test test</h3>
     <h2 id="info"></h2>
 
     <script>
-        var infoDiv = document.getElementById('info1');
-
+        
         function endreAlt(info1) {
-            var testOnLoad =  document.getElementById('info1').innerHTML += '<li>onload</li>'; 
-            var testOnChange = document.getElementById('info1').innerHTML += '<li>onchange</li>';
-            var testOnInput =  document.getElementById('info1').innerHTML += '<li>oninput</li>';
-            var testOnMouseOver = document.getElementById('info1').innerHTML += '<li>onmouseover</li>';
-            var testOnMouseOut = document.getElementById('info1').innerHTML += '<li>onmouseout</li>';
-                infoDiv.innerHTML = '<div >' + info1 + '</div>';
+            document.getElementById('info').innerHTML += '<li>' + info1 + '</li>';
+
         }
 
 
-        //function testOnLoad() {
-        //    document.getElementById('info').innerHTML += '<li>onload</li>';
-        //}
-        //function testOnChange() {
-        //    document.getElementById('info').innerHTML += '<li>onchange</li>';
-        //}
-        //function testOnInput() {
-        //    document.getElementById('info').innerHTML += '<li>oninput</li>';
-        //}
-        //function testOnMouseOver() {
-        //    document.getElementById('info').innerHTML += '<li>onmouseover</li>';
-        //}
-        //function testOnMouseOut() {
-        //    document.getElementById('info').innerHTML += '<li>onmouseout</li>';
-        //}
+     
     </script>
 </body>
 </html>
 
+<!--Eksemplet fra ferdighet 10--> 
 <!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
