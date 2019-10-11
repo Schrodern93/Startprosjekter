@@ -24,6 +24,7 @@
             var høyde = endY - startY;
             var farge = tilfeldigFarge();
             var ord = tilfeldigOrd();
+            //var bokstav = tilfeldigBokstav();
             var divHtml = '<div style="' +
                 delAvStylePx('left', startX) +
                 delAvStylePx('top', startY) +
@@ -50,10 +51,12 @@
                 tilfeldigTallEllerBokstavABCDEF();
         }
         function tilfeldigOrd() {
-            return '<p>'
+            return (
                 tilfeldigBokstav() +
                 tilfeldigBokstav() +
-                tilfeldigBokstav() + '</p>'; 
+                tilfeldigBokstav() +
+                tilfeldigBokstav() +
+                tilfeldigBokstav() ); 
 
         }
         function tilfeldigTallEllerBokstavABCDEF() {
@@ -63,16 +66,23 @@
             return String.fromCharCode(tall - 10 + charCodeA);
         }
         function tilfeldigBokstav() {
-            var tall = tilfeldigTall(0, 28);
-            if (tall < 25) return tall;
-            const charCodeA = 'æ'.charCodeAt(0);
-            const charCodeB = 'ø'.charCodeAt(1);
-            const charCodeC = 'å'.charCodeAt(2);
-            return String.fromCharCode(tall - 25 + charCodeA)
-            return String.fromCharCode(tall - 25 + charCodeB)
-            return String.fromCharCode(tall - 25 + charCodeC);
+            var tall2 = tilfeldigTall2(0, 28);
+            if (tall2 <= 25) return String.fromCharCode(tall2 + 'a'.charCodeAt(0));
+            if (tall2 == 26) return 'æ';
+            if (tall2 == 27) return 'ø';
+            if (tall2 == 28) return 'å';
+            //const charCodeA = 'æ'.charCodeAt(26);
+            //const charCodeB = 'ø'.charCodeAt(27);
+            //const charCodeC = 'å'.charCodeAt(28);
+            //return String.fromCharCode(tall - 25 + charCodeA)
+            //return String.fromCharCode(tall - 25 + charCodeB)
+            //return String.fromCharCode(tall - 25 + charCodeC);
         }
+       
         function tilfeldigTall(minimum, maksimum) {
+            return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
+        }
+         function tilfeldigTall2(minimum, maksimum) {
             return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
         }
 
