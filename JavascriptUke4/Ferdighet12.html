@@ -15,6 +15,8 @@
     <script>
         tilfeldigBokstav();
         tilfeldigFirkant();
+        tilfeldigVokal();
+        tilfeldigKonsonant();
         function tilfeldigFirkant() {
             var endX = tilfeldigTall(window.innerWidth * 0.2, window.innerWidth);
             var endY = tilfeldigTall(window.innerHeight * 0.2, window.innerHeight);
@@ -23,7 +25,8 @@
             var bredde = endX - startX;
             var høyde = endY - startY;
             var farge = tilfeldigFarge();
-            var ord = tilfeldigOrd();
+            //var ord = tilfeldigOrd();
+            var staving = tilfeldigStaving();
             //var bokstav = tilfeldigBokstav();
             var divHtml = '<div style="' +
                 delAvStylePx('left', startX) +
@@ -31,7 +34,7 @@
                 delAvStylePx('width', bredde) +
                 delAvStylePx('height', høyde) +
                 delAvStyle('background-color', farge) +
-                '">' + ord +  '</div>';
+                '">' + staving +  '</div>';
             document.write(divHtml);
             if (Math.random() < 0.9) tilfeldigFirkant();
         }
@@ -59,6 +62,17 @@
                 tilfeldigBokstav() ); 
 
         }
+ //-------------------------------------------------------------------------------------------------- 
+        function tilfeldigStaving() {
+
+            return (tilfeldigKonsonant() +
+                tilfeldigVokal() +
+                tilfeldigKonsonant() +
+                tilfeldigVokal() +
+                tilfeldigKonsonant());  /*Hvis den ikke fungerer legg det inn i klammer*/
+ //-------------------------------------------------------------------------------------------------- 
+
+        }
         function tilfeldigTallEllerBokstavABCDEF() {
             var tall = tilfeldigTall(0, 15);
             if (tall < 10) return tall;
@@ -71,14 +85,40 @@
             if (tall2 == 26) return 'æ';
             if (tall2 == 27) return 'ø';
             if (tall2 == 28) return 'å';
-            //const charCodeA = 'æ'.charCodeAt(26);
-            //const charCodeB = 'ø'.charCodeAt(27);
-            //const charCodeC = 'å'.charCodeAt(28);
-            //return String.fromCharCode(tall - 25 + charCodeA)
-            //return String.fromCharCode(tall - 25 + charCodeB)
-            //return String.fromCharCode(tall - 25 + charCodeC);
+  //--------------------------------------------------------------------------------------------------         
         }
-       
+        function tilfeldigVokal() {
+            var tall2 = tilfeldigTall2(0, 25);
+            var konsonant;
+            var vokal;
+            if (tall2 == 0 || tall2 == 4 || tall2 == 8 || tall2 == 14 || tall2 == 20 || tall2 == 24) {
+
+                return String.fromCharCode(tall2 + 'a'.charCodeAt(0));
+            
+            }
+            
+            else {
+                 return String.fromCharCode('a'.charCodeAt(0));
+                //Du må tenke annerledes, her vil du få inn en random bokstav og den vil prøve å sette opp, men det er få vokaler, og dermed vil det bare 
+                //bli riktig i noen få tilfeller
+                
+            }
+        }
+         function tilfeldigKonsonant() {
+            var tall2 = tilfeldigTall2(0, 25); 
+             const konsonant = 'b'.charCodeAt(1);
+             var vokal = 'aeiouy';
+            if (tall2 == 0 || tall2 == 4 || tall2 == 8 || tall2 == 14 || tall2 == 20 || tall2 == 24) {
+               
+               
+                return String.fromCharCode(konsonant);
+            }
+            else {
+                
+               return String.fromCharCode(tall2 + 'a'.charCodeAt(0));
+            }
+        }
+  //--------------------------------------------------------------------------------------------------------------------------------     
         function tilfeldigTall(minimum, maksimum) {
             return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
         }
