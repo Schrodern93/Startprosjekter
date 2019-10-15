@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <!--<div id="info">test</div>-->
+    <script>
+
+        //sjekkogreturner();
+        taInnverdier();
+        tilfeldigSkrift();
+        //randomVokal();
+        //randomKonsonant();
+
+        function tilfeldigSkrift() {
+            var liste = taInnverdier();
+            //var vokal = randomVokal();
+            //var vokal = randomVokal();
+            //var konsonant = randomKonsonant();
+             var divHtml = '<div>' + liste + '</div>';
+        //document.getElementById('info').innerHTML = divHtml.innerTXT;
+            document.write(divHtml);
+}
+        function taInnverdier() {
+            var randomKonsonant = sjekkogreturner(randomKonsonant);
+            var randomVokal = sjekkogreturner(randomVokal);
+            var liste = [sjekkogreturner() , sjekkogreturner() , sjekkogreturner() , sjekkogreturner() , sjekkogreturner()];
+            return liste;
+            console.log(liste);
+        }
+
+        function sjekkogreturner() {
+            //var teller = 0;
+            var randomKonsonant = randomKonsonant();
+            var randomVokal = randomVokal();
+            for (var teller = 0; teller >= 4;){
+                if (teller == 0 || 2 || 4) {
+                    return randomKonsonant;
+                }
+                if (teller == 1 || 3) {
+                    return randomVokal;
+                }
+
+            }
+             teller++;
+        }
+         function randomVokal() {
+                var tall = tilfeldigTall(0, 25);
+                if (tall == 0 || tall == 4 || tall == 8 || tall == 14 || tall == 20 || tall == 24) {
+                    return String.fromCharCode(tall + 'a'.charCodeAt(0));
+                }
+                else {
+                    randomVokal();
+                }
+         }
+            function randomKonsonant() {
+                var tall = tilfeldigTall(0, 25);
+                if (tall == 0 || tall == 4 || tall == 8 || tall == 14 || tall == 20 || tall == 24) {
+                    randomKonsonant();
+                }
+                else {
+                    return String.fromCharCode(tall + 'a'.charCodeAt(0));
+                }
+            }
+            function tilfeldigTall(minimum, maksimum) {
+                return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
+            }
+
+    </script>
+
+
+
+
+</body>
+</html>
