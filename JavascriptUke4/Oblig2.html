@@ -4,19 +4,31 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+
+        .chosen {
+            stroke: black;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <svg id="chart" width="500" viewBox="0 0 80 60"></svg>
+        <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
     </div>
     Valgt stolpe: <i>ingen</i><br />
-    Verdi: <input type="number" min="1" max="10" /><button>Legg til stolpe</button>
-    <button disabled>Endre valgt stolpe</button><br />
-    <button disabled>Fjerne valgt stolpe</button>
+    Verdi: <input id="in" type="number" min="1" max="10" /><button onclick="leggTil()">Legg til stolpe</button>
+    <button id="endre" onclick="endre()" disabled>Endre valgt stolpe</button><br />
+    <button id="fjern" onclick="fjerne()" disabled>Fjerne valgt stolpe</button>
 
     <script>
         let numbers = [7, 3, 1, 5, 8];
         var svgTag = document.getElementById('chart');
+        let input = document.getElementById('in');
+        //Model
+        var btnendre = document.getElementById('endre');
+        let btnselect;
+        let btnfjern = document.getElementById('fjern');
+        //View
         showChart();
 
         function showChart() {
@@ -28,14 +40,15 @@
         }
 
         function createBar(number, barNo) {
+
             const width = 8;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
             let height = number * 10;
-            let y = 60 - height;
+            let y = 80 - height;
             let color = calcColor(1, 10, barNo);
-            return `<rect width="${width}" height="${height}"
-                                x="${x}" y="${y}" fill="${color}"></rect>`;
+            return `<rect id="${barNo}" onclick="select(this)" width="${width}" height="${height}"
+                                        x="${x}" y="${y}" fill="${color}"></rect>`;
         }
 
         function calcColor(min, max, val) {
@@ -44,6 +57,74 @@
             var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
             return colString;
         }
+
+        function fjerne() {
+        numbers.splice(btnselect.id -1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)     
+            showChart();
+        }
+        function leggTil() {
+            if (input.value <= 10 && input.value > 0) {
+                numbers.push(input.value);
+                showChart();
+            }
+            else {
+                alert('Ikke en gyldig verdi prøv 1 til 10'); 
+            }
+        }
+
+        function endre() {
+            if (input.value <= 10 && input.value > 0) {
+                numbers[btnselect.id - 1] = input.value;
+                showChart();
+                let hold = btnselect;
+        //console.log(hold);
+                btnselect = undefined;
+        //console.log(btnselect);
+        //console.log(hold);
+                select(hold);
+            }
+            else {
+                alert('Ikke en gyldig verdi prøv 1 til 10'); 
+            }
+        }  
+        
+        function buttonEnable() {
+            btnendre.disabled = false;
+            btnfjern.disabled = false;
+        }
+         function buttonDisable() {
+            btnendre.disabled = true;
+            btnfjern.disabled = true;
+        }
+
+        function select(stolpe) {
+
+            if (stolpe == btnselect) {
+                btnselect.classList.remove('chosen');
+                btnselect = undefined;
+                buttonDisable();
+                return;
+            } else {
+        
+                if (btnselect != undefined) {
+                     btnselect.classList.remove('chosen');
+                }   
+            }
+                 
+        console.log("stolpe: " + stolpe);
+        console.log("stolpeid: " + stolpe.id);
+        
+        btnselect = stolpe;
+
+        console.log("btnselectstolpen: " + btnselect);
+        btnselect.classList.add('chosen');
+        buttonEnable();
+          
+            //console.log(input.value);
+        }
+
+
+
     </script>
 
 </body>
