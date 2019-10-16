@@ -63,7 +63,6 @@
             var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
             return colString;
         }
-
         function fjerne() {
         numbers.splice(selectedBarNo -1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)     
             showChart();
@@ -88,8 +87,7 @@
             else {
                 alert('Ikke en gyldig verdi prøv 1 til 10'); 
             }
-        }  
-        
+        }          
         function buttonEnable() {
             btnendre.disabled = false;
             btnfjern.disabled = false;
@@ -98,12 +96,10 @@
             btnendre.disabled = true;  
             btnfjern.disabled = true;
         }
-
         function select(barNo) {
             selectedBarNo = barNo;
             buttonEnable();
             showChart();
-
         }
     </script>
 
