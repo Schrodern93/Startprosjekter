@@ -49,7 +49,7 @@
             let y = 80 - height;
             let color = calcColor(1, 10, barNo);
             if (selectedBarNo == barNo) {
-                return `<rect id="${barNo}" onclick="select(${barNo})" style="stroke black"  width="${width}" height="${height}"
+                return `<rect id="${barNo}" onclick="select(${barNo})" style="stroke: black"  width="${width}" height="${height}"
                                         x="${x}" y="${y}" fill="${color}"></rect>`;
             }
             else {
@@ -65,7 +65,7 @@
         }
 
         function fjerne() {
-        numbers.splice(btnselect.id -1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)     
+        numbers.splice(selectedBarNo -1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)     
             showChart();
         }
         function leggTil() {
@@ -79,10 +79,10 @@
         }
         function endre() {
             if (input.value <= 10 && input.value > 0) {
-                numbers[btnselect.id - 1] = input.value;
+                numbers[selectedBarNo - 1] = input.value;
                 showChart();
-                let hold = btnselect;
-                btnselect = undefined;
+                let hold = selectedBarNo;
+               selectedBarNo = undefined;
                 select(hold);
             }
             else {
@@ -101,7 +101,9 @@
 
         function select(barNo) {
             selectedBarNo = barNo;
+            buttonEnable();
             showChart();
+
         }
     </script>
 
