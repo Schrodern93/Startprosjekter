@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            font-size: 500%;
+            user-select: none;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="image" onclick="changeImage()"></div>
+    <div id="pointsInfo"></div>
+    <button onclick="buyUpgrade()">Kjøp oppgradering (10 poeng)</button>
+    <button onclick="buyUpgrade2()">Kjøp oppgradering2 (100 poeng)</button>
+    <br />
+    <button onclick="buyUpgrade3()">Kjøp oppgradering3 (1000 poeng)</button>
+    <button onclick="klokke();">Autoclick(10.000 poeng)</button>
+   
+    <h2  id="vis"></h2>
+    <h2  id="poengprsek"></h2>
+    <script>
+        var imageDiv = document.getElementById('image');
+        var pointsDiv = document.getElementById('pointsInfo');
+        var visDiv = document.getElementById('vis');
+        var poengsekDiv = document.getElementById('poengprsek');  
+
+        // model
+        var timer = 0;
+        var points = 0;
+        var pointsPerClick = 1;
+        var time = 1000;
+
+        // controller
+        function changeImage() {
+            points += pointsPerClick;
+            show();
+        }
+        function buyUpgrade() {
+            if (points < 10) return;
+            points -= 10;
+            pointsPerClick++;
+            show();
+        }
+        function buyUpgrade2() {
+            if (points < 100) return;
+            points -= 100;
+            pointsPerClick += 10;
+            show();
+        }
+        function buyUpgrade3() {
+            if (points < 100) return;
+            points -= 1000;
+            pointsPerClick += 100;
+            show();
+        }
+        function klokke() {
+            if (points < 10000) return;
+            points -= 10000;
+            timer += 10;
+            show();
+        }
+        function leggTil() {
+            setTimeout('test()', time);  
+        }
+        function test() {
+            if (timer == 0) return;
+            else {
+                points += timer;
+                show();
+            }
+        }
+        // view
+        show();
+        function show() {
+            imageDiv.innerHTML = points % 2 === 0 ? '😀' : '😃';
+            pointsDiv.innerHTML = points;
+            visDiv.innerHTML = 'Points per click: ' + pointsPerClick;
+            poengsekDiv.innerHTML = 'Points per sec: ' + timer;
+            leggTil();
+        }
+    </script>
+</body>
+</html>
