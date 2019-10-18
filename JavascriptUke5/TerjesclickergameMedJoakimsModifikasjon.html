@@ -31,9 +31,10 @@
 
         // model
         var timer = 0;
-        var points = 0;
+        var points = 1000;
         var pointsPerClick = 1;
         var time = 1000;
+        var stopp;
 
         // controller
         function changeImage() {
@@ -59,18 +60,21 @@
             show();
         }
         function klokke() {
-            if (points < 10000) return;
-            points -= 10000;
+            if (points < 1000) return;
+            points -= 1000;
             timer += 10;
             show();
         }
         function leggTil() {
-            setTimeout('test()', time);  
+           
+           var stopp =  setTimeout('test()', time);  
+            return stopp;
         }
         function test() {
             if (timer == 0) return;
             else {
                 points += timer;
+               
                 show();
             }
         }
@@ -80,8 +84,9 @@
             imageDiv.innerHTML = points % 2 === 0 ? '😀' : '😃';
             pointsDiv.innerHTML = points;
             visDiv.innerHTML = 'Points per click: ' + pointsPerClick;
-            poengsekDiv.innerHTML = 'Points per sec: ' + timer;
+            poengsekDiv.innerHTML = 'Points per sec: ' + timer;           
             leggTil();
+            clearTimeout(stopp);
         }
     </script>
 </body>

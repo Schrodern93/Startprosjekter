@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
-
+        
         .chosen {
             stroke: black;
         }
@@ -16,19 +16,20 @@
         <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
     </div>
     <!--View-->
-    Valgt stolpe: <i>ingen</i><br />
+    <div id="infotext"></div>
     Verdi: <input id="in" type="number" min="1" max="10" /><button onclick="leggTil()">Legg til stolpe</button>
     <button id="endre" onclick="endre()" disabled>Endre valgt stolpe</button><br />
     <button id="fjern" onclick="fjerne()" disabled>Fjerne valgt stolpe</button>
 
     <script>
          //Model
-        let numbers = [7, 3, 1, 5, 8];  // lista med stolpene
+        let numbers = [7, 3, 1, 5, 8];  
         var svgTag = document.getElementById('chart');
         let input = document.getElementById('in');
         var btnendre = document.getElementById('endre');
         let selectedBarNo;
         let btnfjern = document.getElementById('fjern');
+
         //View
         showChart();
 
@@ -38,25 +39,32 @@
                 svgInnerHtml += createBar(numbers[i], i + 1);
             }
             svgTag.innerHTML = svgInnerHtml;
+            document.getElementById('infotext').innerHTML = 'Valgt stolpe: ' + (selectedBarNo || 'Ingen');
+            if (selectedBarNo != null) {
+                btnendre.disabled = btnfjern.disabled = false;
+            }else {
+                btnendre.disabled = btnfjern.disabled = true;
+            }
         }
         //controller
         function createBar(number, barNo) {
-
             const width = 8;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
             let height = number * 10;
             let y = 80 - height;
             let color = calcColor(1, 10, barNo);
-            if (selectedBarNo == barNo) {
-                return `<rect id="${barNo}" onclick="select(${barNo})" style="stroke: black"  width="${width}" height="${height}"
+            if (selectedBarNo == selectedBarNo) {
+                if (selectedBarNo == barNo) {
+                    return `<rect id="${barNo}" onclick="select(${barNo})" style="stroke: black"  width="${width}" height="${height}"
                                         x="${x}" y="${y}" fill="${color}"></rect>`;
+                }
+                else {
+                    return `<rect id="${barNo}" onclick="select(${barNo})" width="${width}" height="${height}"
+                                        x="${x}" y="${y}" fill="${color}"></rect>`;
+                }
             }
-            else {
-             return `<rect id="${barNo}" onclick="select(${barNo})" width="${width}" height="${height}"
-                                        x="${x}" y="${y}" fill="${color}"></rect>`;}
-            }
-
+        }
         function calcColor(min, max, val) {
             var minHue = 240, maxHue = 0;
             var curPercent = (val - min) / (max - min);
@@ -68,7 +76,7 @@
             showChart();
         }
         function leggTil() {
-            if (input.value <= 10 && input.value > 0) {
+            if (input.value <= 10 && input.value > 0) { // sjekker grensene
                 numbers.push(input.value);  // legger til en verdi i numbers på slutten med verdien til input
                 showChart();
             }
@@ -77,28 +85,23 @@
             }
         }
         function endre() {
-            if (input.value <= 10 && input.value > 0) {
-                numbers[selectedBarNo - 1] = input.value;
+            if (input.value <= 10 && input.value > 0) { // sjekker grensene 
+                numbers[selectedBarNo - 1] = input.value; // endrer på den valgte baren til inputverdien. Lista starter på 0 , derfor må vi ha -1 etter selectedBarNo 
                 showChart();
                 let hold = selectedBarNo;
-               selectedBarNo = undefined;
+                selectedBarNo = undefined;  // setter selectBarNo til undefined 
                 select(hold);
             }
-            else {
+            else {      // Hvis verdien i if sestningen ikke er riktig sender den alerten med feilmelding
                 alert('Ikke en gyldig verdi prøv 1 til 10'); 
             }
         }          
-        function buttonEnable() {
-            btnendre.disabled = false;
-            btnfjern.disabled = false;
-        }
-         function buttonDisable() {
-            btnendre.disabled = true;  
-            btnfjern.disabled = true;
-        }
         function select(barNo) {
-            selectedBarNo = barNo;
-            buttonEnable();
+            if (selectedBarNo == barNo) {   // sjekker om disse to er like, hvis de er det setter den selectedBarNo til verdien null(ingen verdi)
+                selectedBarNo = null;
+            } else {                        // hvis ikke kjører den elsen som setter selectBarNo til barNo
+                selectedBarNo = barNo;
+            }
             showChart();
         }
     </script>
