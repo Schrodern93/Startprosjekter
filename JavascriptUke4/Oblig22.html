@@ -6,24 +6,27 @@
     <title></title>
     <style>
         
-        .chosen {
-            stroke: black;
-        }
+       svg{
+           user-select: none;   /*denne fjerner den blå markeringen som dukker opp hvis man trykker mange ganger*/
+       }
+
     </style>
 </head>
 <body>
-    <div>
-        <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>
-    </div>
     <!--View-->
+    <div>
+        <svg id="chart" height="650" width="500" viewBox="0 0 80 60"></svg>  <!--SVG = Scalabe vector graphics-->
+    </div>
+
+
     <div id="infotext"></div>
     Verdi: <input id="in" type="number" min="1" max="10" /><button onclick="leggTil()">Legg til stolpe</button>
     <button id="endre" onclick="endre()" disabled>Endre valgt stolpe</button><br />
     <button id="fjern" onclick="fjerne()" disabled>Fjerne valgt stolpe</button>
 
     <script>
-         //Model
-        let numbers = [7, 3, 1, 5, 8];  
+        //Model
+        let numbers = [7, 3, 1, 5, 8];
         var svgTag = document.getElementById('chart');
         let input = document.getElementById('in');
         var btnendre = document.getElementById('endre');
@@ -42,7 +45,7 @@
             document.getElementById('infotext').innerHTML = 'Valgt stolpe: ' + (selectedBarNo || 'Ingen');
             if (selectedBarNo != null) {
                 btnendre.disabled = btnfjern.disabled = false;
-            }else {
+            } else {
                 btnendre.disabled = btnfjern.disabled = true;
             }
         }
@@ -57,11 +60,11 @@
             if (selectedBarNo == selectedBarNo) {
                 if (selectedBarNo == barNo) {
                     return `<rect id="${barNo}" onclick="select(${barNo})" style="stroke: black"  width="${width}" height="${height}"
-                                        x="${x}" y="${y}" fill="${color}"></rect>`;
+                                            x="${x}" y="${y}" fill="${color}"></rect>`;
                 }
                 else {
                     return `<rect id="${barNo}" onclick="select(${barNo})" width="${width}" height="${height}"
-                                        x="${x}" y="${y}" fill="${color}"></rect>`;
+                                            x="${x}" y="${y}" fill="${color}"></rect>`;
                 }
             }
         }
@@ -72,7 +75,7 @@
             return colString;
         }
         function fjerne() {
-        numbers.splice(selectedBarNo -1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)     
+            numbers.splice(selectedBarNo - 1, 1);   // splice ( første parameter markerer index og andre parameter velger antall som skal fjernes)
             showChart();
         }
         function leggTil() {
@@ -81,21 +84,21 @@
                 showChart();
             }
             else {
-                alert('Ikke en gyldig verdi prøv 1 til 10'); 
+                alert('Ikke en gyldig verdi prøv 1 til 10');
             }
         }
         function endre() {
-            if (input.value <= 10 && input.value > 0) { // sjekker grensene 
-                numbers[selectedBarNo - 1] = input.value; // endrer på den valgte baren til inputverdien. Lista starter på 0 , derfor må vi ha -1 etter selectedBarNo 
+            if (input.value <= 10 && input.value > 0) { // sjekker grensene
+                numbers[selectedBarNo - 1] = input.value; // endrer på den valgte baren til inputverdien. Lista starter på 0 , derfor må vi ha -1 etter selectedBarNo
                 showChart();
                 let hold = selectedBarNo;
-                selectedBarNo = undefined;  // setter selectBarNo til undefined 
+                selectedBarNo = undefined;  // setter selectBarNo til undefined
                 select(hold);
             }
             else {      // Hvis verdien i if sestningen ikke er riktig sender den alerten med feilmelding
-                alert('Ikke en gyldig verdi prøv 1 til 10'); 
+                alert('Ikke en gyldig verdi prøv 1 til 10');
             }
-        }          
+        }
         function select(barNo) {
             if (selectedBarNo == barNo) {   // sjekker om disse to er like, hvis de er det setter den selectedBarNo til verdien null(ingen verdi)
                 selectedBarNo = null;

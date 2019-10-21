@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    
+    <input id="skjerm" />
+    <button onclick="pluss()">"+"</button>
+    <button onclick="minus()">"-"</button>
+    <button onclick="gange()">"*"</button>
+    <button onclick="dele()">"/"</button>
+    <button onclick="erlik()">"="</button>
+    <div id="info" onchange="svar">Svaret skal dukke opp her</div>
+    <script>
+
+        // modell
+        let verdier = [a,b];
+        //let a;
+        //let b;
+
+        erlik();
+        //View
+        function erlik() {
+            var svar = document.getElementById('info');
+            return svar.value;
+        }
+
+        // controller
+        function pluss() {
+            return a + b;
+        }
+        function minus() {
+            return a - b;
+
+        }function gange() {
+            return a * b;
+        }function dele() {
+            return a / b;
+        }
+        
+
+
+
+
+
+
+    </script>
+
+
+</body>
+</html>
