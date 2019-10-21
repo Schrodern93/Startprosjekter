@@ -19,7 +19,7 @@
     <button onclick="buyUpgrade2()">Kjøp oppgradering2 (100 poeng)</button>
     <br />
     <button onclick="buyUpgrade3()">Kjøp oppgradering3 (1000 poeng)</button>
-    <button onclick="klokke();">Autoclick(10.000 poeng (fungerer på 1000 for prototypen)</button>
+    <button onclick="klokke();">Autoclick (10.000 poeng)</button>
    
     <h2  id="vis"></h2>
     <h2  id="poengprsek"></h2>
@@ -59,16 +59,16 @@
             show();
         }
         function buyUpgrade3() {
-            if (points < 100) return;
+            if (points < 1000) return;
             points -= 1000;
             pointsPerClick += 100;
             
             show();
         }
         function klokke() {
-            if (points < 1000) return;
-            points -= 1000;
-            timer += 9;
+            if (points < 10000) return;
+            points -= 10000;
+            timer += 99;
             show(); 
         }
         function leggTil() {
