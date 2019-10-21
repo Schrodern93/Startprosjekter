@@ -13,11 +13,12 @@
     <button onclick="gange()">"*"</button>
     <button onclick="dele()">"/"</button>
     <button onclick="erlik()">"="</button>
-    <div id="info" onchange="svar">Svaret skal dukke opp her</div>
+    <div id="info" onchange="erlik()">Svaret skal dukke opp her</div>
     <script>
 
         // modell
-        let verdier = [a,b];
+        let verdier = [a, b];
+        let svar = ['', ''];
         //let a;
         //let b;
 
@@ -30,7 +31,7 @@
 
         // controller
         function pluss() {
-            return a + b;
+            return svar + svar;
         }
         function minus() {
             return a - b;
