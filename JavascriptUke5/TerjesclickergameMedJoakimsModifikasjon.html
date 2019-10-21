@@ -34,7 +34,10 @@
         var points = 1000;
         var pointsPerClick = 1;
         var time = 1000;
-        var stopp;
+        var ferdig = false;
+        //var stopp;
+         //var stopp = setTimeout('test()', time);  
+        //var sjekk = setInterval(leggTil(), 1000);
 
         // controller
         function changeImage() {
@@ -45,48 +48,73 @@
             if (points < 10) return;
             points -= 10;
             pointsPerClick++;
+            
             show();
         }
         function buyUpgrade2() {
             if (points < 100) return;
             points -= 100;
             pointsPerClick += 10;
+            
             show();
         }
         function buyUpgrade3() {
             if (points < 100) return;
             points -= 1000;
             pointsPerClick += 100;
+            
             show();
         }
         function klokke() {
             if (points < 1000) return;
             points -= 1000;
-            timer += 10;
-            show();
+            timer += 9;
+            show(); 
         }
         function leggTil() {
-           
-           var stopp =  setTimeout('test()', time);  
-            return stopp;
+            try {
+                clearInterval(stopp);
+            }
+            catch{
+                console.log('stop');
+            }
+        }
+        function setInter(){
+            if (ferdig == true) {
+                clearInterval(stopp);
+                ferdig == false;
+               
+            }
+            var stopp = setInterval('test()', time);  
+            
         }
         function test() {
             if (timer == 0) return;
             else {
-                points += timer;
-               
-                show();
+                points += timer;                           
+                show();   
             }
         }
+
         // view
         show();
         function show() {
-            imageDiv.innerHTML = points % 2 === 0 ? '😀' : '😃';
+           
+            if (points > 1000000) {
+                imageDiv.innerHTML = points % 2 === 0 ? '😎' : '🤑';
+            }
+            else if (points >= 10000) {
+                imageDiv.innerHTML = points % 2 === 0 ? '😋' : '😍';
+            } else {
+                imageDiv.innerHTML = points % 2 === 0 ? '😀' : '😃';
+                }
             pointsDiv.innerHTML = points;
             visDiv.innerHTML = 'Points per click: ' + pointsPerClick;
-            poengsekDiv.innerHTML = 'Points per sec: ' + timer;           
-            leggTil();
-            clearTimeout(stopp);
+            poengsekDiv.innerHTML = 'Points per sec: ' + timer;
+            if (ferdig == false) {
+                ferdig = true;
+                setInter();
+            }
         }
     </script>
 </body>
