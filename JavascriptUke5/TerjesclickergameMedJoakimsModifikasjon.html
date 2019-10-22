@@ -17,17 +17,19 @@
     <div id="pointsInfo"></div>
     <button onclick="buyUpgrade()">Kjøp oppgradering (10 poeng)</button>
     <button onclick="buyUpgrade2()">Kjøp oppgradering2 (100 poeng)</button>
-    <br />
     <button onclick="buyUpgrade3()">Kjøp oppgradering3 (1000 poeng)</button>
+    <br />
+    <button onclick="buyUpgrade4()">Kjøp oppgradering4 (10.000 poeng)</button>
     <button onclick="klokke();">Autoclick (10.000 poeng)</button>
-   
-    <h2  id="vis"></h2>
-    <h2  id="poengprsek"></h2>
+    <button onclick="klokke2();">Autoclick (100.000 poeng)</button>
+
+    <h2 id="vis"></h2>
+    <h2 id="poengprsek"></h2>
     <script>
         var imageDiv = document.getElementById('image');
         var pointsDiv = document.getElementById('pointsInfo');
         var visDiv = document.getElementById('vis');
-        var poengsekDiv = document.getElementById('poengprsek');  
+        var poengsekDiv = document.getElementById('poengprsek');
 
         // model
         var timer = 0;
@@ -36,7 +38,7 @@
         var time = 1000;
         var ferdig = false;
         //var stopp;
-         //var stopp = setTimeout('test()', time);  
+        //var stopp = setTimeout('test()', time);
         //var sjekk = setInterval(leggTil(), 1000);
 
         // controller
@@ -48,28 +50,41 @@
             if (points < 10) return;
             points -= 10;
             pointsPerClick++;
-            
+
             show();
         }
         function buyUpgrade2() {
             if (points < 100) return;
             points -= 100;
-            pointsPerClick += 10;
-            
+            pointsPerClick += 11;
+
             show();
         }
         function buyUpgrade3() {
             if (points < 1000) return;
             points -= 1000;
-            pointsPerClick += 100;
-            
+            pointsPerClick += 125;
+
+            show();
+        }
+        function buyUpgrade4() {
+            if (points < 10000) return;
+            points -= 10000;
+            pointsPerClick += 1500;
+
             show();
         }
         function klokke() {
             if (points < 10000) return;
             points -= 10000;
             timer += 99;
-            show(); 
+            show();
+        }
+        function klokke2() {
+            if (points < 100000) return;
+            points -= 100000;
+            timer += 999;
+            show();
         }
         function leggTil() {
             try {
@@ -79,27 +94,29 @@
                 console.log('stop');
             }
         }
-        function setInter(){
+        function setInter() {
             if (ferdig == true) {
                 clearInterval(stopp);
                 ferdig == false;
-               
+
             }
-            var stopp = setInterval('test()', time);  
-            
+            var stopp = setInterval('test()', time);
+
         }
         function test() {
             if (timer == 0) return;
             else {
-                points += timer;                           
-                show();   
+                points += timer;
+                show();
             }
         }
 
         // view
         show();
         function show() {
-           
+            if (points > 100000000) time = 10;
+            if (points > 10000000) time = 100;
+            if (points > 1000000) time = 500;
             if (points > 1000000) {
                 imageDiv.innerHTML = points % 2 === 0 ? '😎' : '🤑';
             }
@@ -107,7 +124,7 @@
                 imageDiv.innerHTML = points % 2 === 0 ? '😋' : '😍';
             } else {
                 imageDiv.innerHTML = points % 2 === 0 ? '😀' : '😃';
-                }
+            }
             pointsDiv.innerHTML = points;
             visDiv.innerHTML = 'Points per click: ' + pointsPerClick;
             poengsekDiv.innerHTML = 'Points per sec: ' + timer;
