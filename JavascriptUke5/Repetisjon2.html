@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        p{
+            font-size: 50px;
+        }
+
+    </style>
+
+    
+</head>
+<body>
+    <p id="para" onclick="firkant1()">Paragraf 1</p>
+    <h1 id="over" onmouseover="bytt()">Overskrift</h1>
+    <p id="firkant"></p>
+    <script>
+
+        function bytt() {
+            document.getElementById('para').innerText = "Paragraf 2";
+
+        }
+        function firkant1() {
+            //var test = '';
+           
+
+            //var test = document.getElementById('firkant').innerHTML += "#";
+            for (let i = 0; i < 90; i++) {
+                console.log(i);
+                var en = i+1;
+                document.getElementById('firkant').innerHTML += (en != 0 && en % 10 === 0 ? 'Y <br/>' : '#'); /*(en != 0 && en % 7 === 0 ? 'X' : ''); */
+                 //document.getElementById('firkant').innerHTML += en != 0 && en % 7 === 0 ? 'X' : '';
+                //if ( i != 0 && i % 10 === 0) document.getElementById('firkant').innerHTML += '<br/>';
+                 //console.log(test.length);
+
+                //imageDiv.innerHTML = points % 2 === 0 ? '😎' : '🤑';
+                //}
+                //if (test.length == 10) {
+                //    test.length = -10;
+                //}
+            }
+        }
+    </script>
+
+</body>
+</html>
