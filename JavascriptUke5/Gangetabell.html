@@ -27,7 +27,7 @@
         let multiplicationMatrixDiv = document.getElementById('multiplicationMatrix');
 
         // model
-        let columnCount = 5;
+        let columnCount = 6;
         let multiplicationMatrix = [
             1, 2, 3, 4, 5,
             2, 4, 6, 8, 10,
@@ -50,13 +50,14 @@
             multiplicationMatrixDiv.style.gridTemplateColumns = `repeat(${columnCount},40px)`;
 
             verdi.innerHTML = input.value;
+            console.log(columnCount);
         }
 
 
-        function multiplicationMatrix() {
+        function columnMaker() {
 
             columnCount.innerHTML = input.value;
-
+            
             show();
         }
         
