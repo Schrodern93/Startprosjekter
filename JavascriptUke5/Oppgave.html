@@ -7,6 +7,7 @@
     <style>
         div{
             font-size: 500%;
+            user-select: none;
         }
         button{
             height:100px;
@@ -24,11 +25,9 @@
         var i = 0;
         
         show();
-        function show() {
-            for (i = 0; i < liste.length; i++) {
+        function show() {       
                 document.getElementById('vis').innerHTML += liste[i] + ' ';
-                //i++;
-            }
+                i++;  
             }
     </script>
 </body>
