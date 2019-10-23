@@ -4,52 +4,72 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <style>
+        div {
+            float: left;
+            background-color: beige;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: helvetica;
+            font-size: 200%;
+            border: #bbbbaa solid 4px;
+            border-radius: 10px;
+            user-select: none;
+        }
+
+            div.resultBox {
+                width: 344px;
+                text-align: right;
+            }
+
+            div.firstInRow {
+                clear: left;
+            }
+    </style>
 </head>
 <body>
-    
-    <input id="skjerm" />
-    <button onclick="pluss()">"+"</button>
-    <button onclick="minus()">"-"</button>
-    <button onclick="gange()">"*"</button>
-    <button onclick="dele()">"/"</button>
-    <button onclick="erlik()">"="</button>
-    <div id="info" onchange="erlik()">Svaret skal dukke opp her</div>
+    <div id="resultBox" class="resultBox"></div>
+
+    <div onclick="leggTil(7)" class="firstInRow">7</div>
+    <div onclick="leggTil(8)">8</div>
+    <div onclick="leggTil(9)">9</div>
+    <div onclick="leggTil('÷')">÷</div>
+
+    <div onclick="leggTil(4)" class="firstInRow">4</div>
+    <div onclick="leggTil(5)">5</div>
+    <div onclick="leggTil(7)">6</div>
+    <div onclick="leggTil('×')">×</div>
+
+    <div onclick="leggTil(1)" class="firstInRow">1</div>
+    <div onclick="leggTil(2)">2</div>
+    <div onclick="leggTil(3)">3</div>
+    <div onclick="leggTil('-')">-</div>
+
+    <div onclick="leggTil(0)" class="firstInRow">0</div>
+    <div onclick="fjern()">C</div>
+    <div onclick="regnUt()">=</div>
+    <div onclick="leggTil('+')">+</div>
     <script>
+       var resultat = document.getElementById('resultBox');
 
-        // modell
-        let verdier = [a, b];
-        let svar = ['', ''];
-        //let a;
-        //let b;
-
-        erlik();
-        //View
-        function erlik() {
-            var svar = document.getElementById('info');
-            return svar.value;
+        function leggTil(x) {
+            resultat.innerHTML += x;
         }
-
-        // controller
-        function pluss() {
-            return svar + svar;
+        function fjern() {
+             resultat.innerHTML = '';
         }
-        function minus() {
-            return a - b;
-
-        }function gange() {
-            return a * b;
-        }function dele() {
-            return a / b;
+        function regnUt() {
+            var regnUt1 = resultat
+                .innerHTML
+                .replace('×', '*')
+                .replace('÷', '/');
+            resultat.innerHTML = eval(regnUt1);
         }
-        
-
-
-
-
-
-
     </script>
-
 
 </body>
 </html>

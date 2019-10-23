@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div{
+            font-size: 500%;
+        }
+        button{
+            height:100px;
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="vis"></div>
+    <button onclick="show()"></button>
+    <script>
+        var liste = ['Hei <br/>', 'Jeg', 'vil', 'at', 'du', 'skal', 'lage', 'kode', 'som', 'har', 'en', 'løkke (for/while)', 'og', 'en', 'div,', 'klarer', 'du', 'det?'];
+        var tid = 2500;
+        var i = 0;
+        
+        show();
+        function show() {
+            document.getElementById('vis').innerHTML += liste[i] + ' ';
+            i++;
+        }
+    </script>
+</body>
+</html>
