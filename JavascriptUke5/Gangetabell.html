@@ -17,12 +17,12 @@
 </head>
 <body>
     <div id="verdi"></div>
-    <input id="in" onchange="show()" type="range" min="1" max="100" value="5" />
+    <input id="in" oninput="columnMaker(), show(), leggTil()" type="range" min="1" max="100" value="5" />
     <div id="multiplicationMatrix"></div>
     <script>
         var verdi = document.getElementById('verdi');
         var input = document.getElementById('in');
-
+        let tall = [''];
         // hjelpevariabler for view og controller
         let multiplicationMatrixDiv = document.getElementById('multiplicationMatrix');
 
@@ -39,26 +39,40 @@
         // view
         show();
         function show() {
-           
+            verdi.innerHTML = input.value;
             let html = '';
-            for (let i = 0; i < multiplicationMatrix.length; i++) {
+            
+            for (let i = 0; i < input.value; i++) {  // endret fra multiplicationMatrix
+                //if (input.value > lastinput.value) {
+                
+                //}
                 let number = multiplicationMatrix[i];
-                html += `<div>${number}</div>`;
+                html += `<div>${tall}</div>`;
             }
             multiplicationMatrixDiv.innerHTML = html;
             multiplicationMatrixDiv.style.display = 'grid';
             multiplicationMatrixDiv.style.gridTemplateColumns = `repeat(${columnCount},40px)`;
 
-            verdi.innerHTML = input.value;
-            console.log(columnCount);
+           
+            //console.log(columnCount);
         }
 
+        //1 til verdi = columnCount <br/> nextline = 2 til verdi  
+        function leggTil() {
+            tall.splice(input, input.value);
+            tall.push(input.value);
+            console.log(tall);
+            show();
+        }
 
         function columnMaker() {
 
-            columnCount.innerHTML = input.value;
-            
+            columnCount = input.value;
+            //console.log(columnCount);
             show();
+        }
+        function rowMaker() {
+
         }
         
     </script>
