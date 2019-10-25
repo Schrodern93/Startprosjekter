@@ -4,25 +4,33 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <style>
-        page{
+        page {
             width: 100vw;
-            height:100vh;
-                /*width: device width;*/
+            height: 100vh;
+            /*width: device width;*/
         }
+
         div {
             font-size: 1000%;
             user-select: none;
         }
-        button{
+
+        button {
             width: 250px;
             height: 50px;
-            background-color:#046692;
+            background-color: #046692;
             border: solid #00ffff;
             border-radius: 10px;
         }
-       
+        div.bar{
+            font-size: 100%;
+        }
     </style>
 </head>
 <body>
@@ -35,7 +43,12 @@
     <button onclick="buyUpgrade4()">Kjøp oppgradering4 (10.000 poeng)</button>
     <button onclick="klokke();">Autoclick (10.000 poeng)</button>
     <button onclick="klokke2();">Autoclick (100.000 poeng)</button>
-
+    <br/>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+             aria-valuemin="0" aria-valuemax="100" style="width:40%">
+        </div>
+        </div>
     <h2 id="vis"></h2>
     <h2 id="poengprsek"></h2>
     <script>
@@ -43,21 +56,23 @@
         var pointsDiv = document.getElementById('pointsInfo');
         var visDiv = document.getElementById('vis');
         var poengsekDiv = document.getElementById('poengprsek');
-
+        var prosent = document.getElementsByClassName('progress-bar progress-bar-success');
+        
         // model
         var timer = 0;
         var points = 0;
+        var prosent1 = 0;
         var pointsPerClick = 1;
         var time = 1000;
         var ferdig = false;
-        //var stopp;
-        //var stopp = setTimeout('test()', time);
-        //var sjekk = setInterval(leggTil(), 1000);
+        var dele = 0; 
 
         // controller
         function changeImage() {
             points += pointsPerClick;
+            regn();
             show();
+
         }
         function buyUpgrade() {
             if (points < 10) return;
@@ -123,9 +138,15 @@
                 show();
             }
         }
+        function regn() {
+            var dele = points / 500000000;
+            prosent1 = dele * 100;
+            prosent1 = prosent1;   
+        }
 
         // view
         show();
+        //regn();
         function show() {
             if (points > 100000000) time = 10;
             if (points > 10000000) time = 100;
@@ -145,6 +166,10 @@
                 ferdig = true;
                 setInter();
             }
+           
+            prosent[0].style.width = prosent1 +'%';
+            console.log(prosent[0].style.width);
+
         }
     </script>
 </body>

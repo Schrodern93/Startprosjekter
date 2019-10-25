@@ -6,14 +6,9 @@
     <title></title>
     <style>
         input{
-            /*padding:20px;*/
             margin:40px;
         }
-
-
     </style>
-
-
 </head>
 <body>
     <div id="verdi"></div>
@@ -42,7 +37,8 @@
             multiplicationMatrixDiv.innerHTML = html;
             multiplicationMatrixDiv.style.display = 'grid';
             multiplicationMatrixDiv.style.gridTemplateColumns = `repeat(${columnCount},40px)`;
-        }    
+        }   
+        //controller
         function leggTil() {
             tall = [];
             let høyestetall = input.value;
