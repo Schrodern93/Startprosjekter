@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div id="objekt"></div>
+    <script>
+        var statsDiv = document.getElementById('objekt');
+        function verdier() {
+          let objekt = {};
+            objekt.tekst = 'Hei dette er ett objekt';
+            objekt.verdi1 = 1;
+            objekt.verdi2 = 2;
+            return objekt;
+        }
+        show();
+        function show() {
+            const objekt = verdier();
+            const statsHtml =
+                `<table>
+                        <tr><td>Tekst</td><td>${objekt.tekst}</td></tr>
+                        <tr><td>Verdi1:</td><td>${objekt.verdi1}</td></tr>
+                        <tr><td>Verdi2:</td><td>${objekt.verdi2}</td></tr>
+                    </table>`;
+            statsDiv.innerHTML = statsHtml;
+        }
+    </script>
+
+</body>
+</html>
