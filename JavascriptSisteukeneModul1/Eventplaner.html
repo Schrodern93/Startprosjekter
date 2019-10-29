@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #inputTable{
+            border:solid 1px #014f9a;      
+            padding: 4px;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <table id="inviteTable"></table>
+    <div>
+        <table id="inputTable">
+            <tr>
+                <td>Invitasjonsskjema</td>
+                <td>for tidenes fest!</td>
+            </tr>
+            <tr>
+                <td>Navn:</td>
+                <td><input class="tableInput" id="infoPerson" type="text"></td>
+            </tr>
+            <tr>
+                <td>Alder: </td>
+                <td><input class="tableInput" id="infoAge" type="number"></td>
+            </tr>
+            <tr>
+                <td>Kjønn:</td>
+                <td>
+                    Gutt<input class="tableInput" id="infoBoy" type="radio">
+                    Jente<input class="tableInput" id="infoGirl" type="radio">
+                </td>
+            </tr>
+            <tr>
+                <td>Invitert:</td>
+                <td><input class="tableInput" id="infoAttend" type="checkbox"></td>
+            </tr>
+            <tr>
+            <td></td>
+            <td><button onclick="addPerson()">Legg til person</button></td>
+        </tr>
+        </table>
+    </div>
+    <script>
+
+        // alle personene blir lagt til i denne lista med objekter
+        let personliste = [
+            { person: 'Joakim', age: 26, gutt: true, jente:false, attendingparty: true },
+        ];
+        personliste.sort(function (person) { return personliste.person });
+        // Controller
+        var infoPersonInput = document.getElementById('infoPerson');
+        var infoAgeInput = document.getElementById('infoAge');
+        var infoBoyInput = document.getElementById('infoBoy');
+        var infoGirlInput = document.getElementById('infoGirl');
+        var infoAttendInput = document.getElementById('infoAttend');
+
+        function addPerson() {
+            if (infoPersonInput.value == '' || infoAgeInput.value == '' || (infoBoyInput.value == '' || infoGirlInput.value == '')) return; // sjekker om alle verdier er fylt ut
+             personliste.push({
+                 person: infoPersonInput.value,
+                 age: infoAgeInput.value,
+                 gutt: infoBoyInput.value,
+                 jente: infoGirlInput.value,
+                 attendingparty: infoAttendInput.value
+            });
+           
+            infoPersonInput.value = '';        // setter verdiene til blank igjen 
+            infoAgeInput.value = '';
+            infoBoyInput.value = '';
+            infoGirlInput.value = '';
+            infoAttendInput = '';
+            
+            show();
+        }
+
+        var tasksTable = document.getElementById('tasksTable');
+        show();
+        function show() {           // denne funksjonen legger sammen htmlkoden den konstante og den variable og viser disse 
+            let html = `
+                    <tr>
+                    <th>Liste over inviterte</th>
+                    <th>Alder</th>
+                    <th>Gutt</th>
+                    <th>Jente</th>
+                    <th>Invitert</th>
+                    </tr>`;
+            for (let i = 0; i < personliste.length; i++) {
+                html += createHtmlRow(i);
+            }
+            inviteTable.innerHTML = html;
+        }
+        function createHtmlRow(i) { // denne funksjonen lager selve tabellen med verdier bortsett fra de konstante verdiene (oppgave,hvem,frist og gjort)
+            const person = personliste[i];
+            return `<tr>        
+                        <td>${person.person}</td>
+                        <td>${person.age}</td>
+                        <td>${person.gutt}</td>
+                        <td>${person.jente}</td>
+                        <td>${person.attendingparty}</td >
+                        </tr>`;
+
+        }
+    </script>
+
+</body>
+</html>

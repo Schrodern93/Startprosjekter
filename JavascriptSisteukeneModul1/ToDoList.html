@@ -26,7 +26,6 @@
     </style>
 </head>
 <body>
-    <input type="date" />
     Oppgaver
     <ol>
         <li>
@@ -67,7 +66,7 @@
 
     <script>
         // Model
-        let tasks = [
+        let tasks = [       // objektet task kan ha flere verdier som gjør det mulig å returnere det som en verdi og få flere verdier ut
             { description: 'Handle til middag', person: 'Martin', deadline: new Date("2019-09-16"), doneDate: new Date("2019-10-18"), isDone: true },
             { description: 'Lage middag', person: 'Joakim', deadline: new Date("2019-09-17"), isDone: false },
             { description: 'Spise middag', person: 'Lena', deadline: new Date("2019-09-18"), isDone: false }
@@ -78,8 +77,8 @@
         var taskPersonInput = document.getElementById('taskPerson');
         var taskDeadlineInput = document.getElementById('taskDeadline');
 
-        function addTask() {
-            if ( taskDescriptionInput.value == '' ||  taskPersonInput.value == '' || taskDeadlineInput.value == '') return;
+        function addTask() {        // denne funksjonen får inn verdier og lager en ny oppgave 
+            if ( taskDescriptionInput.value == '' ||  taskPersonInput.value == '' || taskDeadlineInput.value == '') return; // sjekker om alle verdier er fylt ut
             tasks.push({
                 description: taskDescriptionInput.value,
                 person: taskPersonInput.value,
@@ -88,7 +87,7 @@
                
             });
            
-            taskDescriptionInput.value = '';
+            taskDescriptionInput.value = '';        // setter verdiene til blank igjen 
             taskPersonInput.value = '';
             taskDeadlineInput.value = '';
             
@@ -97,7 +96,7 @@
         // View
         var tasksTable = document.getElementById('tasksTable');
         show();
-        function show() {
+        function show() {           // denne funksjonen legger sammen htmlkoden den konstante og den variable og viser disse 
             let html = `
                     <tr>
                     <th>Oppgave</th>
@@ -111,12 +110,12 @@
             }
             tasksTable.innerHTML = html;
         }
-        function createHtmlRow(i) {
+        function createHtmlRow(i) { // denne funksjonen lager selve tabellen med verdier bortsett fra de konstante verdiene (oppgave,hvem,frist og gjort)
             const task = tasks[i];
             const checkedHtml = task.isDone ? 'checked="checked"' : '';
             const doneDate = task.isDone ? task.doneDate.toLocaleDateString() : '';
             if (!task.editMode)
-                return `<tr>
+                return `<tr>        
                         <td>${task.description}</td>
                         <td>${task.person}</td>
                         <td>${task.deadline.toLocaleDateString()}</td>
@@ -138,20 +137,20 @@
                         <button onclick="cancelUpdateTask(${i})">Avbryt</button>
                         </td></tr>`;
         }
-        function changeIsDone(checkbox, index) {
+        function changeIsDone(checkbox, index) {            // checkboksen tar inn om checkboksen er trykket på eller ikke og indeksen(hvilken som er trykket)
             tasks[index].isDone = checkbox.checked;
             tasks[index].doneDate = new Date(Date.now());
             show();
         }
-        function deleteTask(index) {
+        function deleteTask(index) {        // denne funksjonen sletter oppgaven 
             tasks.splice(index, 1);
             show();
         }
-        function editTask(index) {
+        function editTask(index) {          // denne funksjonen gjør det mulig å endre på oppgaven
             tasks[index].editMode = true;
             show();
         }
-        function updateTask(index) {
+        function updateTask(index) {        // denne funksjonen får inn verdier fra brukeren og endrer på oppgaven
            
             const descriptionInput = document.getElementById(`editDescription${index}`);
             const personInput = document.getElementById(`editPerson${index}`);
@@ -163,7 +162,7 @@
             task.editMode = false;
             show();
         }
-        function cancelUpdateTask(index) {
+        function cancelUpdateTask(index) {      // denne funksjonen avbryter redigeringen av en oppgave
             tasks[index].editMode = false;
             show();
         }
