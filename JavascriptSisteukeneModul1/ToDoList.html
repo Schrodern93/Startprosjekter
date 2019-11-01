@@ -66,7 +66,7 @@
 
     <script>
         // Model
-        let tasks = [       // objektet task kan ha flere verdier som gjør det mulig å returnere det som en verdi og få flere verdier ut
+        let tasks = [       // objektet tasks kan ha flere verdier som gjør det mulig å returnere det som en verdi og få flere verdier ut
             { description: 'Handle til middag', person: 'Martin', deadline: new Date("2019-09-16"), doneDate: new Date("2019-10-18"), isDone: true },
             { description: 'Lage middag', person: 'Joakim', deadline: new Date("2019-09-17"), isDone: false },
             { description: 'Spise middag', person: 'Lena', deadline: new Date("2019-09-18"), isDone: false }
@@ -126,7 +126,7 @@
                         <button onclick="editTask(${i})">Rediger</button>
                         </td>
                         </tr>`;
-            return `<tr>
+             return `<tr>
                         <td><input id="editDescription${i}" type="text" value="${task.description}"></td>
                         <td><input id="editPerson${i}" type="text" value="${task.person}"></td>
                         <td><input id="editDeadline${i}" type="date" value="${task.deadline.toISOString().substr(0, 10)}"></td>
