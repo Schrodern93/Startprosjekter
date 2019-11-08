@@ -5,25 +5,28 @@
     <meta charset="utf-8" />
     <title></title>
     <style>
-        table, tr, td, th{
+        table, tr, td, th {
             border: 1px solid lightblue;
             border-collapse: collapse;
         }
+
         td, th {
-            padding:4px;
+            padding: 4px;
         }
-        th{
+
+        th {
             background-color: darkgreen;
             border: 1px solid darkgreen;
-            color:white;
+            color: white;
         }
-        tr:nth-child(even){
+
+        tr:nth-child(even) {
             background: antiquewhite;
         }
     </style>
 </head>
 <body>
-   
+
     <table id="taskTable"></table>
     <br />
     <!--Lag denne tabellen som en funksjon-->
@@ -45,14 +48,86 @@
             <td><button onclick="addTask()">Legg til oppgave</button></td>
         </tr>
     </table>
-    <!---------------------------->
+
+    <!--<div id="user">Laster data......</div>
+    <input type="text" onkeydown="if (event.keyCode === 13) add(this);" />
+    <button onclick="remove()">Fjern siste</button>-->
+    <!--<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!--<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>-->
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
     <script>
-        //Model
-        let tasks = [
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDJudofDYHe6jAavBq2Ei9O0lCMzNkVfZc",
+            authDomain: "fir-test-e989e.firebaseapp.com",
+            databaseURL: "https://fir-test-e989e.firebaseio.com",
+            projectId: "fir-test-e989e",
+            storageBucket: "fir-test-e989e.appspot.com",
+            messagingSenderId: "309319920225",
+            appId: "1:309319920225:web:9fcb3b7ba171ffdcccd820",
+            measurementId: "G-KBVXLJ3PNW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        let db = firebase.firestore(); // mulig const eller var
+        let user1 = {};
+        var userCollection = db.collection('users');
+        userCollection.orderBy('Bruker').onSnapshot(
+            function (snapshot) {
+                //let html = '<ul>';
+                snapshot.forEach(
+                    function (taskTableSnapshot) {
+                        let users = taskTableSnapshot.data();
+                        console.log(users);
+                        user1 = users;
+                        //let user = userCollection.get().then(function (querySnapshot) {
+                        //    querySnapshot.forEach(function (users) {
+                        //        // doc.data() is never undefined for query doc snapshots
+                        //        console.log(users.id, " => ", users.data());
+                        //        //users.tid.toDate().toLocaleDateString();  
+
+                        //    });
+                        //})
+                        //    .catch(function (error) {
+                        //        console.log("Error getting documents: ", error);
+                        //    });
+                    })
+               
+            });
+                
+                       
+                        // html += '<li>' + users.Bruker + ' (' + users.Alder + ')' + '(' + users.tid.toDate().toLocaleDateString() + ' ' + users.isDone + ')</li>';
+
+                        //console.log(usersSnapshot.data);
+                    //});
+
+                //html += '</ul>';
+
+                //document.getElementById('taskTable').innerHTML = html;
+            //});
+        //function add(inputTag) {
+
+        //    let info = {
+        //        Bruker: inputTag.value,
+        //        Alder: Math.floor(Math.random() * 100)
+        //    };
+        //    userCollection.add(info);
+        //}
+         let tasks = [
             { description: 'Vaske klær', person: 'Joakim', deadline: new Date("2019-09-16"), doneDate: new Date("2019-10-19"), isDone: true },
             { description: 'Lage middag', person: 'Joakim', deadline: new Date("2019-11-15"), isDone: false },
             { description: 'Programmere', person: 'Joakim', deadline: new Date("2019-11-13"), isDone: false },
-            { description: 'Lese', person: 'Joakim', deadline: new Date("2019-11-01"), isDone: false }
+            { description: 'Lese', person: 'Joakim', deadline: new Date("2019-11-01"), isDone: false },
+            
+
         ];
 
         let taskDescriptionInput = document.getElementById('taskDescription');
@@ -61,22 +136,29 @@
 
         function addTask() {
             if (taskDescriptionInput.value == '' || taskPersonInput.value == '' || taskDeadlineInput.value == '') return; // sjekker om alle verdier er fylt ut
-            tasks.push({
+            //userCollection.push({
+            let info = {
                 description: taskDescriptionInput.value,
                 person: taskPersonInput.value,
                 deadline: new Date(taskDeadlineInput.value),
                 isDone: false
-            });
+            };
+            //user1.tid.toDate();
+            //tasks.push(user1);
+            userCollection.add(info); // denne sender info til Firestore
+            tasks.push(info);       // denne legger til i lista (tasks)
+            //});
             taskDescriptionInput.value = '';
             taskPersonInput.value = '';
             taskDeadlineInput.value = '';
             show();
         }
 
-        // View
         var tasksTable = document.getElementById('taskTable');
         show();
+        
         function show() {
+            
             let html = `
                                 <tr>
                                     <th>Oppgave</th>
@@ -91,7 +173,7 @@
             }
             tasksTable.innerHTML = html;
         }
-        function createHtmlRow(i) {
+         function createHtmlRow(i) {
             const task = tasks[i];
             const checkedHtml = task.isDone ? 'checked="checked"' : '';
             const doneDate = task.isDone ? task.doneDate.toLocaleDateString() : '';
@@ -118,8 +200,9 @@
                                 <button onclick="cancelUpdateTask(${i})">Avbryt</button>
                                 </td></tr>`;
         }
-        function changeIsDone(checkbox, index) {
-            tasks[index].isDone = checkbox.checked;
+          function changeIsDone(checkbox, index) {
+              tasks[index].isDone = checkbox.checked;
+              return userCollection.update({ isDone: true });
             tasks[index].doneDate = new Date(Date.now());
             show();
         }
@@ -147,6 +230,12 @@
             tasks[index].editMode = false;
             show();
         }
+        //function remove() {
+        //    usersCollection.splice(info, 1);
+        //    userCollection.remove();
+        //}
     </script>
+
+
 </body>
 </html>

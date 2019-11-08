@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table, tr, td{
+            border: solid 1px grey;
+        }
+        td{
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="range" min="3" max="100" oninput="changeSize(this.value)"/>
+    <div id="board"></div>
+
+    <script>
+        let size = 3;
+        show();
+        function show() {
+
+            for (let rowIndex = 0; rowIndex < size; rowIndex++) {
+                 let rows = '';
+                    for (let columnIndex = 0; columnIndex < size; columnIndex++) {
+                    rows += `<tr>${rows}</tr>`;
+            }
+            }
+           
+                document.getElementById('board').innerHTML = `
+            <table>
+                <tr>
+                    ${cells}
+                </tr>
+             </table>
+            `;
+            }
+        
+        function changeSize(newSize) {
+            size = newSize;
+            show();
+        }
+
+
+    </script>
+</body>
+</html>

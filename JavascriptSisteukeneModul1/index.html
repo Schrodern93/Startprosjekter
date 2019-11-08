@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Hot dogs == sandwiches?</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+</head>
+<body>
+
+    <h1 id="hotDogOutput">Hot dog status:</h1>
+    <input type="text" id="latestHotDogStatus" />
+    <button id="saveButton">Save</button>
+    <button id="loadButton">Load</button>
+  
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDJudofDYHe6jAavBq2Ei9O0lCMzNkVfZc",
+            authDomain: "fir-test-e989e.firebaseapp.com",
+            databaseURL: "https://fir-test-e989e.firebaseio.com",
+            projectId: "fir-test-e989e",
+            storageBucket: "fir-test-e989e.appspot.com",
+            messagingSenderId: "309319920225",
+            appId: "1:309319920225:web:9fcb3b7ba171ffdcccd820",
+            measurementId: "G-KBVXLJ3PNW"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        //firebase.analytics();
+        var firestore = firebase.firestore();
+
+        const docRef = firestore.doc("samples/sandwichData");
+        const outputHeader = document.querySelector("#hotDogOutput");
+        const input = document.querySelector("#latestHotDogStatus");
+        const saveButton = document.querySelector("#saveButton");
+        const loadButton = document.querySelector("#loadButton");
+
+        saveButton.addEventListener("click", function () {
+            const textToSave = input.value;
+            console.log("I am going to save " + textToSave + " to Firestore");
+            docRef.set({
+                hotDogStatus: textToSave
+            }).then(function () {
+                console.log("Status saved");
+            }).catch(function (error) {
+                console.log("Got an error", error);
+            });
+        });
+
+            loadButton.addEventListener("click", function () {
+                docRef.get().then(function (doc) {
+                    if (doc && doc.exists) {
+                        const myData = doc.data();
+                        outputHeader.innerHTML = "Hot dog status: " + myData.hotDogStatus;
+                    }
+                }).catch(function (error) {
+                    console.log("Got an error", error);
+                });
+            });
+    </script>
+
+
+</body>
+</html>

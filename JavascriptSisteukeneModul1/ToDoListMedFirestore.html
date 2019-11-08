@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table, tr, td, th{
+            border: 1px solid lightblue;
+            border-collapse: collapse;
+        }
+        td, th {
+            padding:4px;
+        }
+        th{
+            background-color: darkgreen;
+            border: 1px solid darkgreen;
+            color:white;
+        }
+        tr:nth-child(even){
+            background: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+    <script>
+
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDJudofDYHe6jAavBq2Ei9O0lCMzNkVfZc",
+            authDomain: "fir-test-e989e.firebaseapp.com",
+            databaseURL: "https://fir-test-e989e.firebaseio.com",
+            projectId: "fir-test-e989e",
+            storageBucket: "fir-test-e989e.appspot.com",
+            messagingSenderId: "309319920225",
+            appId: "1:309319920225:web:9fcb3b7ba171ffdcccd820",
+            measurementId: "G-KBVXLJ3PNW"
+        };
+
+      
+
+            //            html += `<li>${tasks.description}</li><li> ${tasks.person} </li><li> ${tasks.deadline.toDate().toLocaleDateString()}</li><li>${tasks.doneDate.toDate().toLocaleDateString()}</li><li>${tasks.isDone}</li > `;
+
+            //            console.log(tasksSnapshot.data);
+            //        });
+            //    html += '</ul>';
+            //    document.getElementById('test').innerHTML = html;
+            //});
+   
+        
+        //function add(inputTag) {
+
+        //    let info = {
+        //        Bruker: inputTag.value,
+        //        Alder: Math.floor(Math.random() * 100)
+        //    };
+        //    tasksCollection.add(info);
+        //}
+        ///function remove() {
+        ////    usersCollection.splice(info, 1);
+        ////    userCollection.remove();
+        ////}
+
+    </script>
+
+    <div id="test"></div>
+    <!--<input type="text" onkeydown="if (event.keyCode === 13) add(this);" />-->
+    <table id="taskTable"></table>
+    <br />
+    <!--Lag denne tabellen som en funksjon-->
+    <table id="inputTable">
+        <tr>
+            <td>Oppgave: </td>
+            <td><input class="tableInput" id="taskDescription" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Person: </td>
+            <td><input class="tableInput" id="taskPerson" type="text" /></td>
+        </tr>
+        <tr>
+            <td>Frist:</td>
+            <td><input class="tableInput" id="taskDeadline" type="date" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button onclick="addTask()">Legg til oppgave</button></td>
+        </tr>
+    </table>
+    <!---------------------------->
+    <script>
+        //Model
+        let tasksList = [
+            { description: 'Vaske klær', person: 'Joakim', deadline: new Date("2019-09-16"), doneDate: new Date("2019-10-19"), isDone: true },
+            { description: 'Lage middag', person: 'Joakim', deadline: new Date("2019-11-15"), isDone: false },
+            { description: 'Programmere', person: 'Joakim', deadline: new Date("2019-11-13"), isDone: false },
+            { description: 'Lese', person: 'Joakim', deadline: new Date("2019-11-01"), isDone: false }
+            
+        ];
+
+        let taskDescriptionInput = document.getElementById('taskDescription');
+        let taskPersonInput = document.getElementById('taskPerson');
+        let taskDeadlineInput = document.getElementById('taskDeadline');
+
+          // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        let db = firebase.firestore(); // mulig const eller var
+
+        var tasksCollection = db.collection('tasks');
+        tasksCollection.orderBy('description').onSnapshot(
+            function (snapshot) {
+                //let html = '<ul>';
+                snapshot.forEach(
+                    function (tasksSnapshot) {
+                        let tasks = tasksSnapshot.data();
+                        tasksList.push({
+                            description: tasks.description,
+                            person: tasks.person,
+                            deadline:'',
+                            isDone: tasks.isDone 
+                        });
+                        taskDescriptionInput.value = '';
+                        taskPersonInput.value = '';
+                        taskDeadlineInput.value = '';
+                        show();
+                    })
+            });
+
+
+
+        function addTask() {
+            if (taskDescriptionInput.value == '' || taskPersonInput.value == '' || taskDeadlineInput.value == '') return; // sjekker om alle verdier er fylt ut
+            tasksList.push({
+                description: taskDescriptionInput.value,
+                person: taskPersonInput.value,
+                deadline: new Date(taskDeadlineInput.value),
+                isDone: false
+            });
+            taskDescriptionInput.value = '';
+            taskPersonInput.value = '';
+            taskDeadlineInput.value = '';
+            show();
+        }
+
+        // View
+        var tasksTable = document.getElementById('taskTable');
+        show();
+        function show() {
+            let html = `
+                                        <tr>
+                                            <th>Oppgave</th>
+                                            <th>Hvem</th>
+                                            <th>Frist</th>
+                                            <th>Gjort</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>`;
+            for (let i = 0; i < tasksList.length; i++) {
+                html += createHtmlRow(i);
+            }
+            tasksTable.innerHTML = html;
+        }
+        function createHtmlRow(i) {
+            const task = tasksList[i];
+            const checkedHtml = task.isDone ? 'checked="checked"' : '';
+            const doneDate = task.isDone ? task.doneDate.toDate().toLocaleDateString() : '';
+            if (!task.editMode)
+                return `<tr>
+                                        <td>${task.description}</td>
+                                        <td>${task.person}</td>
+                                        <td>${task.deadline.toLocaleDateString()}</td>
+                                        <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml}></td>
+                                        <td>${doneDate}</td>
+                                        <td>
+                                        <button onclick="deleteTask(${i})">Slett</button>
+                                        <button onclick="editTask(${i})">Rediger</button>
+                                        </td>
+                                        </tr>`;
+            return `<tr>
+                                        <td><input id="editDescription${i}" type="text" value="${task.description}"</td>
+                                        <td><input id="editPerson${i}" type="text" value="${task.person}"</td>
+                                        <td><input id="editDeadline${i}" type="date" value="${task.deadline.toISOString().substr(0, 10)}"</td>
+                                        <td></td>
+                                        <td>${doneDate}</td>
+                                        <td>
+                                        <button onclick="updateTask(${i})">Lagre</button>
+                                        <button onclick="cancelUpdateTask(${i})">Avbryt</button>
+                                        </td></tr>`;
+        }
+        function changeIsDone(checkbox, index) {
+            tasksList[index].isDone = checkbox.checked;
+            tasksList[index].doneDate = new Date(Date.now());
+            show();
+        }
+        function deleteTask(index) {
+            tasksList.splice(index, 1);
+            show();
+        }
+        function editTask(index) {
+            tasksList[index].editMode = true;
+            show();
+        }
+        function updateTask(index) {
+
+            const descriptionInput = document.getElementById(`editDescription${index}`);
+            const personInput = document.getElementById(`editPerson${index}`);
+            const deadlineInput = document.getElementById(`editDeadline${index}`);
+            const task = tasksList[index];
+            task.description = descriptionInput.value;
+            task.person = personInput.value;
+            task.deadline = new Date(deadlineInput.value);
+            task.editMode = false;
+            show();
+        }
+        function cancelUpdateTask(index) {
+            tasksList[index].editMode = false;
+            show();
+        }
+    </script>
+</body>
+</html>
