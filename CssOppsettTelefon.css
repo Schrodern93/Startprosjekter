@@ -1,0 +1,41 @@
+﻿body {
+    padding: 80px;
+    margin-left: 400px;
+}
+div.page {
+    /*stroke: black;
+    stroke-width: 1px;*/
+    border: black 2px solid;
+    height: 637px;
+    width: 375px;
+    display: grid;
+    /*kan også bruke px(pixler) istede for fr(fractions)*/
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 1fr 10fr 1fr;
+    /*grid-template viser oppsett for gridden skiller horisontalt med mellomrom*/
+    grid-template-areas: 'meny header' 
+                         'innhold innhold' 
+                         'footer footer';
+}
+
+div.footer {
+    background-color: dimgrey;
+    grid-area: footer; /*Her defineres området footeren skal ha i grid templaten*/
+}
+
+div.header {
+    background-color: dimgray;
+    grid-area: header;
+}
+
+div.innhold {
+    background-color: white;
+    grid-area: innhold;
+}
+
+div.meny {
+    background-color: yellow;
+    grid-area: meny;
+}
+
+
